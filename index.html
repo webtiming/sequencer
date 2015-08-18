@@ -19,99 +19,73 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="sequencer" class="anchor" href="#sequencer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sequencer</h1>
+      <h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>In this folder you will find the Sequencer library developed for <a href="http://mediascapeproject.eu/">MediaScape project</a>.</p>
+<p>The <em>Sequencer</em> is a simple and generic mechanism for timed execution of <em>timed data</em>.</p>
+
+<p>Sequencing is not a new concept. Frameworks for timed media or presentation typically depend on some kind of sequencing. However, implementations are typically internal, custom to specific media formats, and/or tightly integrated with predefined UI solutions. Furthermore, media clocks and media controls (e.g. play/pause) are also internal, making external time coordination and synchronization very hard.</p>
+
+<p>The Sequencer is designed with two main goals.</p>
+
+<h3>
+<a id="1-isolate-sequencer-logic-from-data-and-ui" class="anchor" href="#1-isolate-sequencer-logic-from-data-and-ui" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) Isolate Sequencer Logic from data and UI.</h3>
+
+<p>The Sequencer is pure JavaScript and fully encapsulates sequencing logic, without references to data formats or UI. By virtue of being <em>data-agnostic</em> and <em>UI-agnostic</em>, the Sequencer makes common timing logic available for any Web application and any purpose.</p>
+
+<h3>
+<a id="2-use-the-htmltimingobject-as-timing-source" class="anchor" href="#2-use-the-htmltimingobject-as-timing-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Use the HTMLTimingObject as timing source.</h3>
+
+<p>The HTMLTimingObject is a simple concept encapsulating both timing and timing controls. It is proposed as a unifying approach for temporal interoperability in the Web. In short, by sharing a single timing object as timing source, independent components may be precisely coordinated in time. Crucially, this is also true in the distributed scenario, as timing objects support synchronization with online timing objects (Shared Motion). So, by using the timing object as timing source, the Sequencer readily supports precise, multi-device sequencing.</p>
 
 <h2>
-<a id="navigation" class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API Documentation</h2>
 
-<p><a href="#goals">Goals</a> | <a href="#dependencies">Dependencies</a> | <a href="#structure">Structure</a> | <a href="#documentation">Documentation</a> | <a href="#authors">Authors</a> | <a href="#license">License</a></p>
+<p>The Sequencer API is simple. The Sequencer works on a collection of <em>cues</em> and produces event upcalls <em>enter</em> and <em>exit</em> at the correct time. A cue is a <em>(key, Interval)</em> pair. Timing aspects are expressed by <em>Interval</em> objects, supporting both intervals [23.2, 28.7] and singular points [24.7]. The Sequencer API is similar to the <em>HTMLTextTracks</em>, though it improves upon this mechanism in many respects.</p>
 
-<h3>
-<a id="goals" class="anchor" href="#goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goals</h3>
+<p>Please find the full documentation [<a href="http://webtiming.github.io/sequencer/api.html">http://webtiming.github.io/sequencer/api.html</a>]</p>
 
-<p><a href="#navigation">Top</a></p>
+<h2>
+<a id="github-project" class="anchor" href="#github-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>GitHub Project</h2>
 
-<p>MediaScape targets applications that provide shared experiences across multiple devices.</p>
+<p>[<a href="https://github.com/webtiming/sequencer">https://github.com/webtiming/sequencer</a>]</p>
 
-<p>This library provides a generic mechanism for timing-sensitive execution of timed data. </p>
-
-<p>Timed data is data associated with an interval or a point, for example (23.2,24.8) or (12.4). The Sequencer is driven by an explicit timing source (not system clock) and its main function is to emit "enter" and "exit" events for timed data, at the correct time (according to its timing source). So, in the above example, if an advancing timing source reaches 23.2, an "enter" event must be emitted, and a little later the timing source reaches 24.8 the corresponding "exit" event must also be emitted, unless the timing source have been paused in the mean time. This function makes the Sequencer similar to a HTMLTrackElement used to time-align subtitles with a playing video. However, unlike the HTMLTrackElement, the Sequencer does NOT use a HTMLMediaElement as timing source. Instead, the Sequencer uses Shared Motion, a generic, multi-device timing mechanism for the Web. This way, the Sequencer becomes a generic building block for timed execution in multi-device Web applications. The Sequencer also improves upon the HTMLTrackElement in several other respects. Here's a list of reasons why you should consider using the Sequencer.</p>
-
-<ul>
-<li>
-<p>Sequencer uses Shared Motion as timing source</p>
-
-<ul>
-<li>Shared Motion does not require any (master) audio/video element for playback, implying applicability for timed presentations which do not include audio/video</li>
-<li>Shared Motion provides a more precise timing model than the HTMLMediaElement</li>
-<li>Shared Motion provides a wide set of navigational primitives, e.g. step-wise, slow-motion, backwards or acceleration. </li>
-<li>Shared Motion enables time-coordinated playback (synchronization) with multiple video/audio elements (using Shared Motion Media Sync library)</li>
-<li>Shared Motion enables multi-device playback for any connected Web client (globally).</li>
-<li>Shared Motion is proposed for standardization as HTMLTimingObject by W3C Multi-device Timing Community Group<br>
-</li>
-</ul>
-</li>
-<li><p>Sequencer emits events more precisely than say HTMLTrackElement - typically correct down to a single millisecond, whereas HTMLTrackElement may be off by hundreds of milliseconds.</p></li>
-<li>Sequencer logic proposed for standardization by W3C Multi-device Timing Community Group as extension on HTMLTextTracks. This is the reference implementation.</li>
-<li>Sequencer is data-independent, implying that applications are not required to adopt a specific data format for timed data. It also implies that any data can be timed and visualized, in particular arbitrary application specific JSON data.</li>
-<li>Sequencer is UI-independent, implying full freedom with respect to visualization. Crafting application specific timed-visualizations requires only basic Web programming skills.</li>
-<li>Sequencer encapsulates all the complexity of timing, allowing programmers to focus on UI design.</li>
-<li>Sequencer is generic and supports any timed data as long as timing aspects can be mapped to singular points in time or time-intervals.</li>
-<li>Sequencer has full support for dynamic data, allowing the timing aspects of data to be changed safely during playback, without introducing any extra complexity for the programmer.</li>
-<li>Sequencer is fun and easy to use.</li>
-</ul>
-
-<h3>
-<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
-
-<p><a href="#navigation">Top</a></p>
-
-<p>The Sequencer implementation depends on the MediaScape Shared Motion API as timing source. Shared Motions are implemented and provided by Motion Corporation <a href="http://motioncorporation.com">http://motioncorporation.com</a>. Shared Motion is currently prepared for standardization by W3C Multi-device Timing Community Group <a href="https://www.w3.org/community/webtiming/">https://www.w3.org/community/webtiming/</a>.  Current demoes are set up to use a single, public motion. For further experimentation with the Sequencer, please create a developer account and create your motions at Motion Corporation <a href="http://dev.motioncorporation.com">http://dev.motioncorporation.com</a>.</p>
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
 
 <p>Sequencer and Shared Motion are vanilla JavaScript and should run in every modern browser.</p>
 
-<h3>
-<a id="structure" class="anchor" href="#structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Structure</h3>
+<p>The Sequencer implementation depends of Shared Motion, an early implementation of the HTMLTimingObject provided by the Motion Corporation [<a href="http://motioncorporation.com">http://motioncorporation.com</a>]. The HTMLTimingObject is currently being prepared for standardization by W3C Multi-device Timing Community Group [<a href="https://www.w3.org/community/webtiming/">https://www.w3.org/community/webtiming/</a>], and its design is inspired by Shared Motion. The Sequencer will serve as reference implementation.</p>
 
-<p><a href="#navigation">Top</a></p>
+<p>For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion [<a href="http://dev.motioncorporation.com">http://dev.motioncorporation.com</a>].</p>
 
-<p>The generic structure of mediascape repositories is:</p>
-
-<ul>
-<li>API: The JavaScript API.</li>
-<li>complements: additional elements for extra and optional features.</li>
-<li>helloworld: minimal sample code.</li>
-</ul>
-
-<h3>
-<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h3>
-
-<p><a href="#navigation">Top</a></p>
-
-<p>Please find detailed documentation in <a href="API/Sequencer/README.md">API Doc</a> and <a href="helloworld/README.md">DEMO Doc</a></p>
-
-<h3>
-<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h3>
-
-<p><a href="#navigation">Top</a></p>
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
 
 <ul>
-<li>Ingar Mæhlum Arntzen (<a href="mailto:ingar.arntzen@norut.no">ingar.arntzen@norut.no</a>)</li>
+<li>Ingar Mæhlum Arntzen (<a href="mailto:ingar.arntzen@norut.no">ingar.arntzen@norut.no</a>) (<a href="https://github.com/ingararntzen" class="user-mention">@ingararntzen</a>)</li>
 </ul>
 
-<h3>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+<h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
 
-<p><a href="#navigation">Top</a></p>
+<p>The development of the Sequencer is funded by the EU FP7 MediaScape project [<a href="http://mediascapeproject.eu">http://mediascapeproject.eu</a>] and results are contributed to the W3C Multi-device Timing Community Group.</p>
 
-<p>Copyright 2015 Norut Northern Research Institute.</p>
+<ul>
+<li>Njål Borch (<a href="mailto:njaal.borch@norut.no">njaal.borch@norut.no</a>) (<a href="https://github.com/snarkdoof" class="user-mention">@snarkdoof</a>) has been much involved in testing, evaluation and API design.</li>
+</ul>
 
-<p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>.</p>
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p>Copyright 2015 Norut Northern Research Institute.
+Author : Ingar Mæhlum Arntzen</p>
+
+<p>The Sequencer is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The Sequencer is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Lesser General Public License along with the Sequencer.  If not, see [<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>].</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/webtiming/sequencer">Sequencer</a> is maintained by <a href="https://github.com/webtiming">webtiming</a>.</span>
