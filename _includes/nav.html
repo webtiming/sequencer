@@ -1,10 +1,8 @@
-<nav class="nav-primary" role="navigation" >
-    <p>
-        {% for p in site.pages %}
-        	<a {% if p.url == page.url %}class="active"{% endif %} href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
-        {% endfor %}
-        <a href="http://webtiming.github.io/sequencer/">HOME</a> 
-        <a href="http://webtiming.github.io/sequencer/api.html">API</a> 
-        <a href="https://github.com/webtiming/sequencer">CODE</a>
-    </p>
-</nav>
+<p>
+    {% for p in site.pages %}
+    	<a {% if p.url == page.url %}class="active"{% endif %} href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+    {% endfor %}
+    <a href="http://webtiming.github.io/sequencer/">HOME</a> 
+    <a href="http://webtiming.github.io/sequencer/api.html">API</a> 
+    <a href="https://github.com/webtiming/sequencer">CODE</a>
+</p>
