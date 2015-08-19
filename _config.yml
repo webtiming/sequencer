@@ -3,5 +3,5 @@ markdown: redcarpet
 pygments: true
 safe: true
 lsi: false
-baseurl: /sequencer
+
 

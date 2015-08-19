@@ -24,15 +24,15 @@ The HTMLTimingObject is a simple concept encapsulating both timing and timing co
 ## Dependencies
 Sequencer and Shared Motion are vanilla JavaScript and should run in every modern browser.
 
-The Sequencer implementation depends of Shared Motion, an early implementation of the HTMLTimingObject provided by the Motion Corporation [](http://motioncorporation.com). The HTMLTimingObject is currently being prepared for standardization by W3C Multi-device Timing Community Group https://www.w3.org/community/webtiming/, and its design is inspired by Shared Motion. The Sequencer will serve as reference implementation.
+The Sequencer implementation depends of Shared Motion, an early implementation of the HTMLTimingObject provided by the [Motion Corporation](http://motioncorporation.com). The HTMLTimingObject is currently being prepared for standardization by [W3C Multi-device Timing Community Group](https://www.w3.org/community/webtiming/), and its design is inspired by Shared Motion. The Sequencer will serve as reference implementation.
 
-For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion http://dev.motioncorporation.com.
+For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion.
 
 ## Authors
 - Ingar Mæhlum Arntzen (ingar.arntzen@norut.no) (@ingararntzen)
 
 ## Acknowledgements
-The development of the Sequencer is funded in part by the EU FP7 MediaScape project http://mediascapeproject.eu, and results are contributed as reference implementation to the W3C Multi-device Timing Community Group.
+The development of the Sequencer is funded in part by the [EU FP7 MediaScape project](http://mediascapeproject.eu), and results are contributed as reference implementation to the W3C Multi-device Timing Community Group.
 
 - Njål Borch (njaal.borch@norut.no) (@snarkdoof) has been much involved in testing, evaluation and API design.
 
@@ -46,4 +46,4 @@ The Sequencer is free software: you can redistribute it and/or modify it under t
 
 The Sequencer is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU Lesser General Public License along with the Sequencer.  If not, see http://www.gnu.org/licenses/.
+You should have received a copy of the GNU Lesser General Public License along with the Sequencer.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
