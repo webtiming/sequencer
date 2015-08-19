@@ -17,10 +17,6 @@ The Sequencer is pure JavaScript and fully encapsulates sequencing logic, withou
 **2) Use the HTMLTimingObject as timing source.**
 The HTMLTimingObject is a simple concept encapsulating both timing and timing controls. It is proposed as a unifying approach for temporal interoperability in the Web. In short, by sharing a single timing object as timing source, independent components may be precisely coordinated in time. Crucially, this is also true in the distributed scenario, as timing objects support synchronization with online timing objects (Shared Motion). So, by using the timing object as timing source, the Sequencer readily supports precise sequencing in both single-device and multi-device scenarios.
 
-## Navigation
-
-[HOME](http://webtiming.github.io/sequencer/) [API](http://webtiming.github.io/sequencer/api.html) [CODE](https://github.com/webtiming/sequencer)
-
 ## Dependencies
 Sequencer and Shared Motion are vanilla JavaScript and should run in every modern browser.
 
