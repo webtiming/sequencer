@@ -1,4 +1,7 @@
-highlighter: pygments
+name: Sequencer Docs
+markdown: redcarpet
+pygments: true
 safe: true
 lsi: false
+baseurl: /sequencer
 
