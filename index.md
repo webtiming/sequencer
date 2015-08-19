@@ -24,7 +24,7 @@ The HTMLTimingObject is a simple concept encapsulating both timing and timing co
 ## Dependencies
 Sequencer and Shared Motion are vanilla JavaScript and should run in every modern browser.
 
-The Sequencer implementation depends of Shared Motion, an early implementation of the HTMLTimingObject provided by the Motion Corporation http://motioncorporation.com. The HTMLTimingObject is currently being prepared for standardization by W3C Multi-device Timing Community Group https://www.w3.org/community/webtiming/, and its design is inspired by Shared Motion. The Sequencer will serve as reference implementation.
+The Sequencer implementation depends of Shared Motion, an early implementation of the HTMLTimingObject provided by the Motion Corporation [](http://motioncorporation.com). The HTMLTimingObject is currently being prepared for standardization by W3C Multi-device Timing Community Group https://www.w3.org/community/webtiming/, and its design is inspired by Shared Motion. The Sequencer will serve as reference implementation.
 
 For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion http://dev.motioncorporation.com.
 
