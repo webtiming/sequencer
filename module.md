@@ -3,25 +3,20 @@ layout: default
 title: Sequencer Module
 ---
 
+This module defines the Sequencer along with a few associated resources. The module is implemented as plain JavaScript and packaged as a [requirejs](http://requirejs.org/) module.
+
+
+{% highlight javascript linenos %}
+var mod = require("./sequencer");   // import sequencer module
+var Sequencer = mod.Sequencer;      // shortcut to Sequencer constructor
+var Interval = mod.Interval;        // shortcut to Interval constructor
+var inherit = mod.inherit;          // utility function for extending Sequencer
+{% endhighlight %}
+
+
 ## Dependencies
-The Sequencer depends on motions implementing the Shared Motion API defined in MediaScape. Online motions are provided by Motion Corporation motioncorporation.com.
+The Sequencer depends on [Shared Motion](http://motioncorporation.com), a JavaScript implementation of the [HTMLTimingObject](http://webtiming.github.io/timingobject), provided by the [Motion Corporation](http://motioncorporation.com). Shared Motion comes with built-in support for online synchronization. The Sequencer will serve as reference implementation for sequencing logic integrated with the HTMLTimingObject. Both the Sequencer and Shared Motion are plain JavaScript and should run in every modern Web browser.
 
-## Files
-- sequencer.js : sequencer logic and module definition. 
-- interval.js : datatype : Interval, the sequencer works on Intervals
-- axis.js : datastructure for efficient ordering and lookup of Intervals
-- sortedarraybinary.js : datastructure : efficient ordering and lookup of floats
-- multimap.js : datastructure : (key,value) map supporting multiple values on single key
-- motionutils.js : utility methods for correct time calculations
-- timeoututils.js : timeout mechanism, improving setTimeout() by wrapping it.
 
-## Sequencer Module
-The sequencer module defines a Sequencer object and an Interval object. The Sequencer works on Intervals. Additionally, an inherit function is available, allowing the Sequencer to be specialized through inheritance.
 
-```js
-var mod = require('mediascape.Sequencer');
-var Sequencer = mod.Sequencer;
-var Interval = mod.Interval;
-var inherit = mod.inherit;
-var SequencerError = mod.SequencerError;
-```
+

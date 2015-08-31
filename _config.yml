@@ -1,9 +1,13 @@
 name: Sequencer Docs
 markdown: redcarpet
 highlighter: pygments
-safe: true
-lsi: false
+#safe: true
+#lsi: false
 baseurl: /sequencer
+
 #source: /sequencer
 
 
+syntax-highlighting:
+  enabled : true
+  css: css/syntax.css
