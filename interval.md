@@ -3,6 +3,8 @@ layout: default
 title: Interval
 ---
 
+
+
 The Sequencer works on Interval objects.
 
 Intervals are expressed by two floating point values [low, high] (low \<= high). Infinity or -Infinity may be used to create un-bounded Intervals, e.g. [low, Infinity) or (-Infinity, high]. If low and high are equal, the Interval is said to be singular.

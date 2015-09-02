@@ -1,4 +1,4 @@
-name: Sequencer Docs
+name: Sequencer
 markdown: redcarpet
 highlighter: pygments
 #safe: true

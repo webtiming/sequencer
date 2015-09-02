@@ -1,12 +1,14 @@
 ---
 layout: default
-title: Sequencer
+title: Doc
 ---
 
+The essential function of the Sequencer is to translate 
+
+The Sequencer is a general programming construct  
 
 
-
-The Sequencer works on a collection of cues. A cue is essentially an association between a key and an Interval, where key is a unique string, thus it can only be associated with one Interval. The sequencer main function is to output enter and exit events at the correct time, as motion enters and exits intervals. The Sequencer API and function is similar to the HTMLTrackElement, yet represent a significant improvement.
+a collection of cues. A cue is essentially an association between a key and an Interval, where key is a unique string, thus it can only be associated with one Interval. The sequencer main function is to output enter and exit events at the correct time, as motion enters and exits intervals. The Sequencer API and function is similar to the HTMLTrackElement, yet represent a significant improvement.
 
 ### Constructor
 Returns a Sequencer object. There is no need to start the Sequencer. Execution is driven by the given motion, and the Sequencer is operational when the constructed finalizes. 

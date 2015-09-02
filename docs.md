@@ -12,12 +12,12 @@ The core idea is that programmers express temporal validity of objects by associ
 > the Sequencer manages a collection of (key,Interval) associations, where *Intervals* define the temporal validity of *keys*. 
 > A (key,value) association is also known as a [Cue](#cue).
 
-The sequencer uses a [TimingObject](http://webtiming.github.io/timingobject) as timing source. The main function of the Sequencer is to emit [enter](#enter) and [exit](#exit) events at the correct time, as the [TimingObject](http://webtiming.github.io/timingobject)enters and exits Intervals. The Sequencer API has similarities to the [TrackElement](http://www.html5rocks.com/en/tutorials/track/basics/) API.
+The sequencer uses a [TimingObject](http://webtiming.github.io/timingobject) as timing source. The main function of the Sequencer is to emit [enter](#enter) and [exit](#exit) events at the correct time, as the [TimingObject](http://webtiming.github.io/timingobject) enters and exits Intervals. The Sequencer API has similarities to the [TrackElement](http://www.html5rocks.com/en/tutorials/track/basics/) API.
 
 <a name="toc"></a>
 ## Table of contents
 
-This documentation includeds the following sections:
+This documentation includes the following sections:
 
 - [Sequencer Module](#module)
 - [Interval](#interval)
@@ -48,13 +48,13 @@ The sequencer module depends on [Shared Motion](http://motioncorporation.com), a
 <a name="interval"></a>
 ## Interval
 
-Intervals are expressed by two floating point values <code>low, high</code>, where <code>low <= high</code>. <code>-Infinity</code> or <code>Infinity</code> may be used to create un-bounded Intervals, e.g. <code>[low, Infinity)</code> or <code>(-Infinity, high]</code>. If <code>low === high</code> the Interval is said to represent a singular point.
+An [Interval](#interval) is expressed by two floating point values <code>low, high</code>, where <code>low <= high</code>. <code>-Infinity</code> or <code>Infinity</code> may be used to create un-bounded Intervals, e.g. <code>[low, Infinity)</code> or <code>(-Infinity, high]</code>. If <code>low === high</code> the Interval is said to represent a singular point <code>[low]</code>.
 
 Intervals may or may not include its endpoints; <code>[a,b], [a,b>, \<b,a], \<a,b></code>. This is defined by optional boolean flags <code>lowInclude</code> and <code>highInclude</code>. If <code>lowInclude</code> and <code>highInclude</code> are omitted, <code>[a,b></code> is the default setting. When multiple Intervals have the same endpoint, these endpoint flags influence [event ordering](#event ordering). The Sequencer implementation also depends on this feature internally for correctness.
 
 Interval objects are immutable.
 
-### Constructor
+### Interval: Constructor
 
 ```javascript
 var i = new Interval(low, high, lowInclude, highInclude);
@@ -65,7 +65,7 @@ var i = new Interval(low, high, lowInclude, highInclude);
 - param: optional {boolean} [highInclude] higher endpoint included in interval : default false
 - returns : {Interval} Interval object
 
-### Properties
+### Interval: Properties
 ```js
 var low = i.low,
     high = i.high,
@@ -74,7 +74,7 @@ var low = i.low,
     length = i.length;
 ```
 
-### Methods
+### Interval: Methods
 
 #### .toString()
 - returns: {string} string representation of the interval
@@ -99,3 +99,24 @@ if (i.isSingular()) {}
 #### .overlapsInterval(otherInterval)
 - param: {Interval} [otherInterval] another Interval
 - returns: {boolean} true if interval covers at least one point also covered by other interval
+
+
+<a name="error"></a>
+## SequencerError
+
+
+<a name="cue"></a>
+## SequencerCue
+
+[SequencerCue](#cue) is a simple datatype used by [Sequencer](#sequencer) for query responses (and in some cases as parameter to event callback parameters). A SequencerCue is essentially an association between a key (string) and an [Interval](#interval). It is representated as a simple JavaScript object. The property *data* is only used in context of [sequencer specialization](#specialization). 
+
+```javascript
+var cue = {
+    key : "string",                  // unique string key
+    interval : new Interval(12,13),  // interval object
+    data : {}                        // javascript object - only used in context of sequencer specialization
+};
+```
+
+
+

@@ -7,7 +7,7 @@ title: Home
 
 > The *Sequencer* is a simple and generic mechanism for timed execution of *timed data*.
 
-Sequencing is not a new concept. Frameworks for timed media or timed presentation are always built around some form of sequencing logic. However, implementations are typically internal, custom to specific media formats, and tightly integrated with predefined UI components. Furthermore, media clocks and media controls (e.g. play/pause) are also implemented internally, making it hard to synchronize with other timed media.
+Sequencing is not a new concept. Frameworks for timed media or timed presentation are always built around some form of sequencing logic. However, implementations are typically internal, custom to specific media formats, and tightly integrated with predefined UI components. Furthermore, media clocks and media controls (e.g. play/pause) are also tightly integrated, making it hard to synchronize with other timed media.
 
 To address these issues, the Sequencer is designed with two main goals.
 
