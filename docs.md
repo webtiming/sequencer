@@ -14,6 +14,7 @@ The core idea is that programmers express temporal validity of objects by associ
 
 The Sequencer uses a [TimingObject](http://webtiming.github.io/timingobject) as timing source. The main function of the Sequencer is to emit [enter](#enter) and [exit](#exit) events at the correct time, as the [TimingObject](http://webtiming.github.io/timingobject) enters and exits Intervals, or time-shifts from one position on the timeline to another. The Sequencer continuously maintains a list of [Active Cues](#activecues) - always consistent with history of event callbacks. The Sequencer API has similarities to the [TrackElement](http://www.html5rocks.com/en/tutorials/track/basics/) API.
 
+> the Sequencer is data agnostic and can therefore be used by any application-specific data model, provided only that application data can be associated with unique keys, and that temporal aspects can be expressed in terms of intervals or singular points.
 
 
 <a name="toc"></a>
