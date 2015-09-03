@@ -3,34 +3,7 @@ layout: default
 title: Doc
 ---
 
-The essential function of the Sequencer is to translate 
 
-The Sequencer is a general programming construct  
-
-
-a collection of cues. A cue is essentially an association between a key and an Interval, where key is a unique string, thus it can only be associated with one Interval. The sequencer main function is to output enter and exit events at the correct time, as motion enters and exits intervals. The Sequencer API and function is similar to the HTMLTrackElement, yet represent a significant improvement.
-
-### Constructor
-Returns a Sequencer object. There is no need to start the Sequencer. Execution is driven by the given motion, and the Sequencer is operational when the constructed finalizes. 
-```js
-var s = new Sequencer(motion);
-```
-- param: {object} [motion] The motion that drives the execution of the Sequencer. Motion object implements Shared Motion API. 
-
-### Operations
-
-#### .addCue(key, interval)
-- param: {string} [key] unique key identifying an Interval.  
-- param: {Interval} [interval] defining the validity of the associated key. 
-- returns : {undefined}
-
-Associate a unique key with an Interval. The keyspace is designed by the programmer. In this regard, the Sequencer is essentially an associative array for Interval objects. Often, application specific datamodels include unique keys of some sort, and these may be used directly with the sequencer. These application specific keys are then reported back to application code by correctly timed Sequencer events. Intervals define when keys are *active*. So, when the current position of motion enters an Interval, the associated key becomes *active*.
-
-addCue() will replace any previous association for given key. Since Intervals are immutable objects, modification of a cue must be be done by generating a new Interval and replacing the association using .addCue() with the same key.
-
-```js
-s.addCue(key, new Interval(12.1, 24.22));
-```
 
 #### .removeCue(key, removedData)
 - param: {string} [key] unique key identifying an Interval.
