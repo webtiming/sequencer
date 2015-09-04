@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2015 Norut Northern Research Institute
+  Author : Ingar Mæhlum Arntzen
+
+  This file is part of the Sequencer module.
+
+  The Sequencer is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  The Sequencer is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<html>
+<head>
+    <!-- Third party : RequireJs-->
+    <script data-main="app" src="../SOURCE/lib/require.js"></script>
+    <script type="text/javascript">
+    require(['./app'], function (app) {
+        require(['js/timeddata', 'sequencer/sequencer', 'js/viewer'], 
+            function (timeddata, seq, viewer) { 
+            app(function (motion) {
+
+                // shortcuts
+                var Sequencer = seq.Sequencer;
+                var inherit = seq.inherit;
+                var Interval = seq.Interval;
+                var associative = timeddata.associative;
+
+                /* 
+                    Implement SpecialSequencer for my special data format.
+                    Timed data is associateive array
+                */
+                var SpecialSequencer = function (motion, map) {
+                    this._map = map;
+                    Sequencer.call(this, motion); // invoke sequencer constructor
+                };
+                inherit(SpecialSequencer, Sequencer); // inheritance function supplied by sequencer module
+
+                SpecialSequencer.prototype.loadData = function () {
+                    var obj, r = this.request();
+                    Object.keys(this._map).forEach(function (key) {
+                        obj = this._map[key];
+                        r.addCue(key, new Interval(obj.start, obj.end), obj.data)
+                    }, this);
+                    r.submit(); 
+                };
+
+                SpecialSequencer.prototype.getData = function (key) {
+                    return this._map[key].data;
+                };
+
+                // Create Special Sequencer
+                var s = new SpecialSequencer(motion, associative);
+                // Connect to UI
+                viewer(s, document.getElementById("viewer"));
+
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <h1>Special Sequencer</h1>
+    <p>See detailed event information in developer console.</p>
+    <p>
+        Use motion controls <a href="ctrl.html" target="_blank">ctrl.html</a> in an other (or multiple) browser tabs/windows (also on other computers) to <i>move</i> through the timed data (i.e. playback). The page may be reloaded at any time. Also open the page on multiple devices to verify multi-device synchronization. 
+    </p>
+    <div id="viewer"></div>
+</body>

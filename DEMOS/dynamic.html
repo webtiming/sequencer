@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2015 Norut Northern Research Institute
+  Author : Ingar Mæhlum Arntzen
+
+  This file is part of the Sequencer module.
+
+  The Sequencer is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  The Sequencer is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<html>
+
+<head>
+    <!-- Third party : RequireJs-->
+    <script data-main="app" src="../SOURCE/lib/require.js"></script>
+    <script type="text/javascript">
+    require(['./app'], function (app) {
+        require(['js/localstorage', 'js/viewer'], 
+            function (ls, viewer) { 
+            app(function (motion) {
+                new ls.LocalStorageViewer(motion, document.getElementById("viewer"));
+                new ls.LocalStorageEditor(document.getElementById("editor"));
+            });
+        });
+    });
+    </script>
+
+    <style>
+    .active {color:red;}
+    </style>
+</head>
+
+<body>
+    <h1> Editor and Dynamic Viewer for Timed Data</h1>
+
+
+    <h2>Editor</h2>
+     <p>
+        The editor may be used to create (key, value) pairs. Specify data, start and end values using text inputs. Click the post button when you are done.
+        You may also specify a key. If you don't, a random key will be generated.       
+    </p>
+    <p>
+        The editor may also be used to modify existing (key, value) pairs. Specify the key and click the load button. Then make your changes and then click post when you are done.       
+    </p>
+
+    <div id="editor"></div>
+
+
+    <h2>Viewer</h2>
+    <p>
+        The viewer is dynamic, implying that modifications made to the data will immediately be reflected in the UI. (key,value) pairs may be modified or removed, and new pairs may be added. 
+    </p>
+    <p>
+        The viewer is also timing sensitive as it visualizes which (key,value) pairs are currently <i>active</i> (according to shared motion). This is illustrated with <span class="active">coloring</span>. Each value define properties <i>start</i> and <i>end</i>. A (key,value) pair is said to be <i>active</i> whenever position <i>p</i> of shared motion is inside the temporal interval defined by <i>(start,end)</i>. In the editor you may modify the temporal placement of (key,value) pairs by assigning new values to properties <i>start</i> and <i>end</i>. 
+    </p>
+    <p>
+        Use motion controls <a href="ctrl.html" target="_blank">ctrl.html</a> in another (or multiple) browser tabs/windows (also on other computers) to <i>move</i> through the timed data (i.e. playback). The page may be reloaded at any time. Also open the page on multiple devices to verify multi-device synchronization. 
+    </p>
+    <p>
+        Note that since the storage implementation used in this demo is based on LocalStorage, data is shared between multiple instances of the same Web page (URL) on a single user agent. Data is NOT shared across different user agents (but shared motion is!). Note also that if this demo is opened from a lokal file <i>file:///</i> then data will NOT be shared between multiple instances of the same page on the same user agent.
+    </p>
+  
+    <div id="viewer"></div>
+
+ 
+    
+</body>
