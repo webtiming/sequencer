@@ -5,7 +5,6 @@ highlighter: pygments
 #lsi: false
 baseurl: /sequencer
 
-#source: /sequencer
 
 
 syntax-highlighting:
