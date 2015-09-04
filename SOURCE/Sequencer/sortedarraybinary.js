@@ -22,7 +22,7 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module);}
 
 
-define (['./interval'], function (Interval) {
+define (['sequencer/interval'], function (Interval) {
 
     'use strict';
 

@@ -21,7 +21,7 @@
 if (typeof define !== 'function') {var define = require('amdefine')(module);}
 
 
-define(['./timeoututils', './interval', './axis'], 
+define(['sequencer/timeoututils', 'sequencer/interval', 'sequencer/axis'], 
 	function (Timeout, Interval, axis)  {
 
 	'use strict';

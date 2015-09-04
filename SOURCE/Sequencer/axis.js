@@ -20,7 +20,7 @@
 
 if (typeof define !== 'function') {var define = require('amdefine')(module);}
 
-define (['./interval', './sortedarraybinary', './multimap'], 
+define (['sequencer/interval', 'sequencer/sortedarraybinary', 'sequencer/multimap'], 
 	function (Interval, SortedArrayBinary, MultiMap) {
 
 	'use strict';
