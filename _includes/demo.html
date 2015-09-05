@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    var MAIN = function (motions) {console.log("main");};
+    var APPID = "8456579076771837888";
+</script>
+
+<!-- Third party : RequireJs-->
+<script data-main="app" src="./SOURCE/lib/require.js"></script>
+
+
+<script type="text/javascript">
+require(['app'], function (app) {
+    app(MAIN);
+});
+</script>
+
+
