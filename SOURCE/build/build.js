@@ -4,5 +4,5 @@
         'sequencer': 'Sequencer'
 	},
 	name : "sequencer/sequencer",
-	out : "sequencer-min.js"
+	out : "../../sequencer-min.js"
 })

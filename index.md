@@ -1,7 +1,11 @@
 ---
-layout: demo
+layout: default
 title: Home
+demoappid: 8456579076771837888
+demojs: index
 ---
+
+
 
 ## The Sequencer in a nutshell
 

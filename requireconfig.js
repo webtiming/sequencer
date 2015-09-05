@@ -20,33 +20,18 @@
 
 requirejs.config({
 	baseUrl: '.',
-  // except, if the module ID starts with "app",
-  // load it from the js/ directory. paths
-  // config is relative to the baseUrl, and
-  // never includes a ".js" extension since
-  // the paths config could be for a directory.
   paths: {
       'js': 'DEMOS/js',
       'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
-      'sequencer': 'SOURCE/Sequencer'
+      'sequencer': 'sequencer-min'
+      //'sequencer': 'SOURCE/Sequencer/sequencer'
   },
   shim: { 
       'mcorp': { exports: 'MCorp'}
   }
 });
 
-define (['mcorp'], function (MCorp) { 
-    return function (mainFunc) {
-        var app = MCorp.app(APPID, {anon:true});
-        app.run = function () {
-            if (document.readyState === "complete") mainFunc(app.motions);
-        };
-        window.onload = function () {
-            if (app.readyState === app.STATE["OPEN"]) mainFunc(app.motions);
-        };
-        app.init();        
-    }
-});
+
 
 
 

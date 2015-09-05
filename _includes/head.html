@@ -7,4 +7,27 @@
 <link href="css/syntax.css" rel="stylesheet" type='text/css'>
 
    
- 
+{% if page.demoappid %}
+
+<!-- Third party : RequireJs-->
+<script src="./SOURCE/lib/require.js"></script>
+
+<script type="text/javascript">
+	var APPID = "{{page.demoappid}}";
+	var demojs = "./{{page.demojs}}";
+
+	require(['requireconfig'], function () {
+		require(['mcorp', demojs], function (MCorp, demo) {
+			var app = MCorp.app(APPID, {anon:true});
+		    app.run = function () {
+		        if (document.readyState === "complete") demo(app.motions);
+		    };
+		    window.onload = function () {
+		        if (app.readyState === app.STATE["OPEN"]) demo(app.motions);
+		    };
+		    app.init();
+		});
+	});
+
+</script>
+{% endif %}
