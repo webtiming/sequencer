@@ -18,7 +18,7 @@
   along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['sequencer/sequencer'], function (seq) {
+define(['sequencer'], function (seq) {
 	'use strict';
 
 
