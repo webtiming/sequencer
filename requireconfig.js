@@ -18,13 +18,16 @@
   along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 requirejs.config({
 	baseUrl: '.',
+  packages: [
+    //{ name: 'sequencer', location: 'SOURCE/Sequencer', main: 'sequencer'},
+    { name: 'sequencer', location: '.', main: 'sequencer-require-min'},
+  ],
   paths: {
       'js': 'DEMOS/js',
       'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
-      'sequencer': 'sequencer-min'
-      //'sequencer': 'SOURCE/Sequencer/sequencer'
   },
   shim: { 
       'mcorp': { exports: 'MCorp'}

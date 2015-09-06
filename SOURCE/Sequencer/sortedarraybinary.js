@@ -19,10 +19,7 @@
 */
 
 
-if (typeof define !== 'function') {var define = require('amdefine')(module);}
-
-
-define (['./interval'], function (Interval) {
+define (['sequencer/interval'], function (Interval) {
 
     'use strict';
 
@@ -265,95 +262,4 @@ define (['./interval'], function (Interval) {
 });
 
 
-
-
-
-// MAIN
-if (typeof module !== 'undefined' && require.main === module) {
-    // TEST
-    var test = function () {
-        var SortedArrayBinary = require('./sortedarraybinary');
-        var Interval = require('./interval');
-  
-        var a = new SortedArrayBinary();
-        var input = [1,4,2,7,8,3];
-        input.forEach(function (p) {
-            a.insert(p);
-        });
-        console.log(a.list());
-        console.log("min " + a.getMinimum() + " expect 1");
-        console.log("max " + a.getMaximum() + " expect 8");
-        // le_indexOf 
-
-        // search numbers
-        console.log("---");
-        // non-existent - smaller than first
-        console.log("le_indexOf " + a.leIndexOf(0.5) + " expect -1");
-        console.log("lt_indexOf " + a.ltIndexOf(0.5) + " expect -1");
-        console.log("ge_indexOf " + a.geIndexOf(0.5) + " expect 0");
-        console.log("gt_indexOf " + a.gtIndexOf(0.5) + " expect 0");
-        console.log("---");
-        // smallest number
-        console.log("le_indexOf " + a.leIndexOf(1.0) + " expect 0");
-        console.log("lt_indexOf " + a.ltIndexOf(1.0) + " expect -1");
-        console.log("ge_indexOf " + a.geIndexOf(1.0) + " expect 0");
-        console.log("gt_indexOf " + a.gtIndexOf(1.0) + " expect 1");
-        console.log("---");
-        // non-existent middle number
-        console.log("le_indexOf " + a.leIndexOf(3.5) + " expect 2");
-        console.log("lt_indexOf " + a.ltIndexOf(3.5) + " expect 2");
-        console.log("ge_indexOf " + a.geIndexOf(3.5) + " expect 3");
-        console.log("gt_indexOf " + a.gtIndexOf(3.5) + " expect 3");
-        console.log("---");
-        // middle number
-        console.log("le_indexOf " + a.leIndexOf(4.0) + " expect 3");
-        console.log("lt_indexOf " + a.ltIndexOf(4.0) + " expect 2");
-        console.log("ge_indexOf " + a.geIndexOf(4.0) + " expect 3");
-        console.log("gt_indexOf " + a.gtIndexOf(4.0) + " expect 4");
-        console.log("---");
-        // largest number
-        console.log("le_indexOf " + a.leIndexOf(8.0) + " expect 5");
-        console.log("lt_indexOf " + a.ltIndexOf(8.0) + " expect 4");
-        console.log("ge_indexOf " + a.geIndexOf(8.0) + " expect 5");
-        console.log("gt_indexOf " + a.gtIndexOf(8.0) + " expect -1");
-        console.log("---");
-        // non-existent - larger than largest
-        console.log("le_indexOf " + a.leIndexOf(8.5) + " expect 5");
-        console.log("lt_indexOf " + a.ltIndexOf(8.5) + " expect 5");
-        console.log("ge_indexOf " + a.geIndexOf(8.5) + " expect -1");
-        console.log("gt_indexOf " + a.gtIndexOf(8.5) + " expect -1");
-        console.log("---");
-
-        // lookup
-        console.log("lookup " + a.lookup() + " expect all");
-        console.log(Interval);
-        console.log("lookup " + a.lookup(new Interval(3,4)) + " expect 3");
-        console.log("lookup " + a.lookup(new Interval(2.9,4.1)) + " expect 3,4");
-        console.log("lookup " + a.lookup(new Interval(3.1,3.9)) + " expect empty");
-
-        console.log("lookup " + a.lookup(new Interval(1,2, false, false)) + " expect none");
-        console.log("lookup " + a.lookup(new Interval (0.9,2.1, false, false)) + " expect 1,2");
-        console.log("lookup " + a.lookup(new Interval (7,8,false, false)) + " expect none");
-        console.log("lookup " + a.lookup(new Interval (6.9,8.1, false, false)) + " expect 7,8");
-
-        // add duplicate
-        a.insert(1);
-        console.log(a.list());
-        // indexOf
-        for (var i=0; i<input.length; i++) {
-            console.log(a.indexOf(a.get(i)));
-        }
-        // remove all
-        for (i=0; i<input.length; i++) {
-            a.remove(input[i]);
-        }
-        console.log(a.list());
-        // remove non-existend
-        a.remove(4);
-        console.log(a.list());
-    };
-
-   
-    test();
-}
 

@@ -18,9 +18,8 @@
   along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (typeof define !== 'function') {var define = require('amdefine')(module);}
 
-define (['./interval', './sortedarraybinary', './multimap'], 
+define (['sequencer/interval', 'sequencer/sortedarraybinary', 'sequencer/multimap'], 
 	function (Interval, SortedArrayBinary, MultiMap) {
 
 	'use strict';
@@ -246,76 +245,3 @@ define (['./interval', './sortedarraybinary', './multimap'],
 	};
 });
 
-
-
-
-if ( typeof module !== 'undefined' && require.main === module) {
-
-
-	var printEvents = function (event_list) {
-	    event_list.forEach(function (e) {
-	    	console.log(e.type + e.interval.toString());
-	    });
-	};
-
-	var printItems = function (items) {
-		items.forEach(function (item) {
-			var pointstr = (item.hasOwnProperty('point')) ? '[' + item.point.toFixed(2) + "] " + item.pointType.toString()  + " ": ""; 
-	    	console.log(pointstr + '(' + item.key + "," + item.interval.toString() + ')');
-	    });
-	};
-
-
-	var ax =  require('./axis');
-	var Interval = require('./interval');
-
-
-
-	// TEST
-
-
-	var test = function () {
-		console.log("test");
-		var axis = new ax.Axis();
-
-	    var event_list = [];
-	    event_list.concat(axis.update("zero", new Interval(0.0, 0.9)));
-        event_list.concat(axis.update("one", new Interval(1.1, 2.1)));
-        event_list.concat(axis.update("one", new Interval(1.1, 2.1)));
-        event_list.concat(axis.update("two", new Interval(4.4, 5.6)));
-        event_list.concat(axis.update("three", new Interval(2.2, 3.4)));
-        event_list.concat(axis.update("four", new Interval(3.3, 3.3)));
-        event_list.concat(axis.update("five", new Interval(-Infinity, Infinity)));	     
-
-	    printEvents(event_list);
-
-		// find points
-		var interval = new Interval(0.0, 10.0);
-	    console.log("lookupByInterval " + interval.toString());
-	    printItems(axis.lookupByInterval(interval));
-	  
-	  
-	    // find spans
-	    var p1 = 0.0, p2 = 3.3;
-	    console.log("lookupByPoint " + p1);
-	    printItems(axis.lookupByPoint(p1));
-	    console.log("lookupByPoint " + p2);
-	    printItems(axis.lookupByPoint(p2));
-	  	
-	    
-	    // remove
-	    console.log("remove all");
-		console.log(axis.keys());
-	    axis.keys().forEach(function(key){
-	    	axis.update(key);
-	    });
-	    console.log(axis.keys());
-	   
-	   	var items = axis.lookupByInterval(new Interval(0.0, 10.0));
-	   	printItems(items);
-	    console.log("remaining " + Object.keys(items).length + " expected 0");
-	};
-
-
-	test();
-}

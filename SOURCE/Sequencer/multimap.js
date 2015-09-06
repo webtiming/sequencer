@@ -18,7 +18,6 @@
   along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (typeof define !== 'function') {var define = require('amdefine')(module);}
 
 define (function () {
 
@@ -117,35 +116,3 @@ define (function () {
 });
 
 
-
-
-
-if (typeof module !== 'undefined' && require.main === module) {
-
-	// TEST
-	var test = function () {
-
-
-	    var MultiMap = require('./multimap');
-	    var p = new MultiMap();
-
-	    p.insert(1, "en");
-	    p.insert(1, "to");
-	    p.insert(1, "en");
-	    p.insert(1.1, "en");
-	    p.insert(1.1, "to");
-
-	    console.log(p.keys());
-	    console.log(p.list());
-
-	    p.remove(1, "en");
-	    p.remove(1, "to");
-	    p.remove(1, "en");
-	    p.remove(1.1, "en");
-	    p.remove(1.1, "to");
-	    
-	    console.log(p.list());
-	};
-
-	test();
-}

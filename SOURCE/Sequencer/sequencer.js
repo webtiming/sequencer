@@ -18,12 +18,9 @@
   along with the Sequencer.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (typeof define !== 'function') {var define = require('amdefine')(module);}
-
 
 define(
-	'/sequencer',
-	['./timeoututils', './interval', './axis'], 
+	['sequencer/timeoututils', 'sequencer/interval', 'sequencer/axis'], 
 	function (Timeout, Interval, axis)  {
 
 	'use strict';
@@ -1446,7 +1443,6 @@ define(
 		Child.uber = Parent.prototype; // reference in parent to superclass
 		Child.prototype.constructor = Child; // resetting constructor pointer 
 	};
-
 
 	// Module Definition
 	return {

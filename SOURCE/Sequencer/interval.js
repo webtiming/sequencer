@@ -19,9 +19,6 @@
 */
 
 
-if (typeof define !== 'function') {var define = require('amdefine')(module);}
-
-
 define( function () {
 
 	'use strict';
@@ -138,28 +135,3 @@ define( function () {
 	return Interval;
 });
 
-
-
-
-if (typeof module !== 'undefined' && require.main === module) {
-
-	var test = function () {
-		var Interval = require('./interval');
-		var i = new Interval(27.2, 31.2, false, true);
-		var j = new Interval(27.2, 31.2, true, false);
-		var k = new Interval(-Infinity, Infinity);
-		console.log(i.toString());
-		console.log(j.toString());
-		console.log(k.toString());
-		console.log(i.coversInterval(j));
-		console.log(j.coversInterval(i));
-		console.log("false " + i.coversPoint(27));
-		console.log("false " +i.coversPoint(27.2));
-		console.log("true " + i.coversPoint(28));
-		console.log("true " + i.coversPoint(31.2));
-		console.log("false " + i.coversPoint(33));
-		console.log(i.isSingular());
-		console.log(k.isFinite());
-	};
-	test();
-}

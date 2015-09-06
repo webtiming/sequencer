@@ -1,1 +1,2 @@
-node r.js -o build.js
+node r.js -o baseUrl=../ paths.sequencer=Sequencer name=sequencer/sequencer out=../../sequencer-require-min.js
+node r.js -o name=almond paths.sequencer=../Sequencer include=sequencer/sequencer insertRequire=sequencer/sequencer out=../../sequencer-min.js wrap=true
