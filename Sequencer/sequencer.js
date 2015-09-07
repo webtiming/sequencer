@@ -20,7 +20,7 @@
 
 
 define(
-	['sequencer/timeoututils', 'sequencer/interval', 'sequencer/axis'], 
+	['timeoututils', 'interval', 'axis'], 
 	function (Timeout, Interval, axis)  {
 
 	'use strict';

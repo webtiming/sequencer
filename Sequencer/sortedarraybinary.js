@@ -19,7 +19,7 @@
 */
 
 
-define (['sequencer/interval'], function (Interval) {
+define (['interval'], function (Interval) {
 
     'use strict';
 
