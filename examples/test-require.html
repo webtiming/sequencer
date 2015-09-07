@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Requirejs config -->
+    <!-- requirejs config -->
     <script>
       var require = {
-        baseUrl : '../Sequencer', // module name <sequencer> points into source directory
+        baseUrl : '../source', // module name <sequencer> points to sequencer.js inside source directory
         paths: {
           'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
           //'sequencer': '../lib/sequencer-require', // module name <sequencer> points to built js file - non-minified
@@ -15,28 +15,23 @@
         }
       };
     </script>
+    <!-- requirejs -->
     <script src="../lib/require.js"></script>
-
-    <!-- Requirejs main -->
+    <!--  main -->
     <script text="javascript">
-      var run = function (motions) {
-        require(['sequencer'], function (seq) {
-          var s = new seq.Sequencer(motions.shared);
-          console.log("ready");
-        });
-      };
-      require(['mcorp'], function (MCorp) {
+      require(['mcorp', 'sequencer'], function (MCorp, seq) {
         var app = MCorp.app("8456579076771837888", {anon:true});
-          app.run = function () {
-              if (document.readyState === "complete") run(app.motions);
-          };
-          window.onload = function () {
-              if (app.readyState === app.STATE["OPEN"]) run(app.motions);
-          };
-          app.init();
+        app.run = function () {
+            var s = new seq.Sequencer(app.motions.shared);
+            document.getElementById("text").innerHTML = "Hello Sequencer!"
+        };
+        if (document.readyState === "complete") app.init();
+        else window.onload = app.init;
       });
     </script>    
   </head>
   <body>
+    <h1>Hello World</h1>
+    <h1 id="text"></h1>
   </body>
 </html>

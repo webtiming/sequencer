@@ -1,5 +1,5 @@
 {
-    baseUrl: '../Sequencer',
+    baseUrl: '../source',
     name: '../build/almond',
     include: ['sequencer'],
     //insertRequire: ['sequencer'],

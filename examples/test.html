@@ -4,21 +4,17 @@
     <script text="javascript" src="http://mcorp.no/lib/mcorp-2.0.js"></script>
     <script text="javascript" src="../lib/sequencer.js"></script>
     <script text="javascript">
-      var run = function (motions) {
-        console.log("ready");
-        var s = new SEQUENCER.Sequencer(motions.shared);
-        console.log(SEQUENCER);
-      };
       var app = MCorp.app("8456579076771837888", {anon:true});
       app.run = function () {
-          if (document.readyState === "complete") run(app.motions);
+        var s = new SEQUENCER.Sequencer(app.motions.shared);
+        document.getElementById("text").innerHTML = "Hello Sequencer!"
       };
-      window.onload = function () {
-          if (app.readyState === app.STATE["OPEN"]) run(app.motions);
-      };
-      app.init();
+      if (document.readyState === "complete") app.init();
+      else window.onload = app.init;
     </script>
   </head>
   <body>
+    <h1>Hello World</h1>
+    <h1 id="text"></h1>
   </body>
 </html>
