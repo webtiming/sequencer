@@ -5,7 +5,10 @@ demoappid: 8456579076771837888
 demojs: index
 ---
 
-
+<style>
+    .active {color:red;font-weight:bold}
+</style>
+<div id="demo"></div>
 
 ## The Sequencer in a nutshell
 
