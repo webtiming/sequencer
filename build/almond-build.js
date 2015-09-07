@@ -1,12 +1,8 @@
 {
-    baseUrl: '.',
-    name: 'almond',
-    paths: {
-        sequencer: "../Sequencer"
-    },
-    include: ['sequencer/sequencer'],
-    insertRequire: ['sequencer/sequencer'],
-    out: 'sequencer-built.js',
+    baseUrl: '../Sequencer',
+    name: '../build/almond',
+    include: ['sequencer'],
+    //insertRequire: ['sequencer'],
     wrap: {
         startFile: 'start.frag',
         endFile: 'end.frag'
