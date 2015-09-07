@@ -1,7 +1,6 @@
-define (['sequencer'], function (seq) {
-	return function (motions) {
-		// do stuff here
-		var s = new seq.Sequencer(motions.shared);
-		console.log("hurrah!");
-	};
-});
+var DEMO = {
+	run : function (motions) {
+		var s = new SEQUENCER.Sequencer(motions.shared);
+		console.log("ready");
+	}
+};

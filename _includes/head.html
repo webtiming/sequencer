@@ -4,29 +4,21 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-<link href="css/syntax.css" rel="stylesheet" type='text/css'>
+<link href="stylesheets/syntax.css" rel="stylesheet" type='text/css'>
 
    
 {% if page.demoappid %}
+<script text="javascript" src="http://mcorp.no/lib/mcorp-2.0.js"></script>
+<script text="javascript" src="lib/sequencer.js"></script>
+<script text="javascript" src="{{page.demojs}}.js"></script>
 
-<!-- Third party : RequireJs-->
-<script src="./SOURCE/lib/require.js"></script>
-
-<script type="text/javascript">
-	var APPID = "{{page.demoappid}}";
-	var demojs = "./{{page.demojs}}";
-
-	require(['requireconfig'], function () {
-		require(['mcorp', demojs], function (MCorp, demo) {
-			var app = MCorp.app(APPID, {anon:true});
-		    app.run = function () {
-		        if (document.readyState === "complete") demo(app.motions);
-		    };
-		    window.onload = function () {
-		        if (app.readyState === app.STATE["OPEN"]) demo(app.motions);
-		    };
-		    app.init();
-		});
-	});
+<script text="javascript">
+	var app = MCorp.app("{{page.demoappid}}", {anon:true});
+	app.run = function () {
+  		DEMO.run(app.motions);
+  	};
+  	if (document.readyState === "complete") app.init();
+  	else window.onload = app.init;
 </script>
+
 {% endif %}
