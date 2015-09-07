@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script text="javascript" src="http://mcorp.no/lib/mcorp-2.0.js"></script>
+    <script text="javascript" src="../lib/sequencer.js"></script>
+    <script text="javascript">
+      var run = function (motions) {
+        console.log("ready");
+        var s = new SEQUENCER.Sequencer(motions.shared);
+        console.log(SEQUENCER);
+      };
+      var app = MCorp.app("8456579076771837888", {anon:true});
+      app.run = function () {
+          if (document.readyState === "complete") run(app.motions);
+      };
+      window.onload = function () {
+          if (app.readyState === app.STATE["OPEN"]) run(app.motions);
+      };
+      app.init();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

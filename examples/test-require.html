@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Requirejs config -->
+    <script>
+      var require = {
+        baseUrl : '../Sequencer', // module name <sequencer> points into source directory
+        paths: {
+          'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
+          //'sequencer': '../lib/sequencer-require', // module name <sequencer> points to built js file - non-minified
+          //'sequencer': '../lib/sequencer-require-min', // module name <sequencer> points to built js file - minified 
+        },
+        shim: { 
+            'mcorp': { exports: 'MCorp'}
+        }
+      };
+    </script>
+    <script src="../lib/require.js"></script>
+
+    <!-- Requirejs main -->
+    <script text="javascript">
+      var run = function (motions) {
+        require(['sequencer'], function (seq) {
+          var s = new seq.Sequencer(motions.shared);
+          console.log("ready");
+        });
+      };
+      require(['mcorp'], function (MCorp) {
+        var app = MCorp.app("8456579076771837888", {anon:true});
+          app.run = function () {
+              if (document.readyState === "complete") run(app.motions);
+          };
+          window.onload = function () {
+              if (app.readyState === app.STATE["OPEN"]) run(app.motions);
+          };
+          app.init();
+      });
+    </script>    
+  </head>
+  <body>
+  </body>
+</html>
