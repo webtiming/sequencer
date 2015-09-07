@@ -62,12 +62,27 @@ var DEMO = function () {
 			this.sequencer.addCue(item.key, new Interval(item.start, item.end));
 		}, this);
 
+		// init bold face
+		this.to.on("change", function () {
+			var pos = this.to.query().pos;
+			var leftInterval = new Interval(0.0, pos, true, true);
+			this.sequencer.getCues().forEach(function (cue) {
+				var el = document.getElementById(cue.key);
+				if (leftInterval.overlapsInterval(cue.interval)) el.classList.add("bold");
+				else el.classList.remove("bold");
+			});
+		}, this);
+	
 		// register event handlers on sequencer
 		this.sequencer.on("enter", function (e) {
-			document.getElementById(e.key).className = "active";
+			var el = 	document.getElementById(e.key);
+			el.classList.add("bold");
+			el.classList.add("active");
 		});
 		this.sequencer.on("exit", function (e) {
-			document.getElementById(e.key).className = "";
+			var el = document.getElementById(e.key);
+			el.classList.remove("active");
+			if (e.directionType === "backwards") el.classList.remove("bold");
 		});
 	};
 

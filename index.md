@@ -6,7 +6,8 @@ demojs: index
 ---
 
 <style>
-    .active {color:red;font-weight:bold}
+.bold {font-weight: bold}
+.active {color:red}   
 </style>
 <div id="demo"></div>
 
