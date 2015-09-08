@@ -10,6 +10,14 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 <link href="stylesheets/syntax.css" rel="stylesheet" type='text/css'>
 
+<script text="javascript">
+var get_view_source_url = function (path) {
+	var baseurl = "{{site.baseurl}}";
+	
+	return "view-source:" + window.location.origin + baseurl + "/" +path;
+};
+</script>
+
    
 {% if page.demoappid %}
 <script text="javascript" src="http://mcorp.no/lib/mcorp-2.0.js"></script>
