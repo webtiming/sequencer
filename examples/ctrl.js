@@ -4,26 +4,34 @@ var DEMO = function () {
 		var root = document.getElementById("demo");
 		var to = motions.shared; // timing object
 
-		var html = "";
-		html += "<button id='play'>Play</button>";
-		html += "<button id='pause'>Pause</button>";
-		html += "<button id='reset'>Reset</button>";
-		html += "<div id='value'><div>";
-
-		root.innerHTML = html;		
-
 	    // Hook up text UI
-    	var value = document.getElementById('value');
-      	to.on("timeupdate", function () {value.innerHTML = to.query().pos.toFixed(2)});
+    	var value = document.getElementById('position');
+      	to.on("timeupdate", function () {
+      		var v = to.query();
+      		value.innerHTML = "p: " + v.pos.toFixed(2) + ", v: " + v.vel.toFixed(2) + ", a: " + v.acc.toFixed(2);
+      	});
 
 		// Hook up buttons UI
-    	var playBtn = document.getElementById('play');
-    	var pauseBtn = document.getElementById('pause');
-    	var resetBtn = document.getElementById('reset');
-    	playBtn.onclick = function () {to.update(null, 1.0, 0.0);};
-    	pauseBtn.onclick = function () {to.update(null, 0.0, 0.0);};
-    	resetBtn.onclick = function () {to.update(0.0, 0.0, 0.0);};
-	};
+		var buttonsEl = document.getElementById("buttons");
+		buttonsEl.onclick = function (e) {
+			var elem, evt = e ? e:event;
+			if (evt.srcElement)  elem = evt.srcElement;
+			else if (evt.target) elem = evt.target;
+			if (elem.id === "reset") to.update(0.0);
+			else if (elem.id === "pause") to.update(null, 0.0, 0.0);
+			else if (elem.id === "play") to.update(null, 1.0, 0.0);
+			else if (elem.id === "end") to.update(100.0);
 
+			else { // relative
+				var v = to.query();
+				if (elem.id === "p-") to.update(v.pos - 1);
+				else if (elem.id === "p+") to.update(v.pos + 1);
+				else if (elem.id === "v-") to.update(null, v.vel - 1);
+				else if (elem.id === "v+") to.update(null, v.vel + 1);
+				else if (elem.id === "a-") to.update(null, null, v.acc - 1);
+				else if (elem.id === "a+") to.update(null, null, v.acc + 1);
+			}
+		}
+	};
 	return { run : run };
 }();
