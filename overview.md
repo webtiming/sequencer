@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Sequencer Project
+title: Overview
 ---
 
 ## Introduction
-This page gives the introduction to the Sequencer project.
+This page gives a wider overview of the Sequencer concept, including term definitions, design principles, scope/limitation, importance/applicability/usage and future work.
 
 ## Definition
 
