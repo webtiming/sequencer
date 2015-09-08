@@ -16,67 +16,32 @@ Finally, it is documented how the Sequencer may be integrated with a specific da
 ## Create Sequencer
 Before a Sequencer may be created a [TimingObject](http://webtiming.github.io/timingobject) must be loaded into the Web page. The TimingObject may become part of the future HTML standard, however, in the mean time a temporary implementation is provided by [Motion Corporation](http://motioncorporation.com). In this example we will use a timing object that is globally shared. In order to define your own timing objects, register as a developer with Motion Corporation and create your own [Motion apps](http://dev.mcorp.no).
 
-Since the Sequencer module is packaged as an [AMD](http://requirejs.org/) module, the following example will use [requirejs](http://requirejs.org/) for loading both the timing object (i.e. shared motion) and the Sequencer module.
+The Sequencer module is available packaged for regular script inclusion as well as an [AMD](http://requirejs.org/) module for use with requirejs, see [helloworld](examples.html#helloworld) and [helloworld-require](examples.html#helloworld-require) for full examples. In the following example we use regular script includes for loading both the timing object (i.e. Shared Motion) and the SEQUENCER module.
 
 
-Define app.js - bootstraps script loading and initialization with requirejs
-
-```javascript
-requirejs.config({
-    paths: {
-        'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
-        'sequencer': 'http://webtiming.github.io/sequencer/sequencer.js'
-    },
-    shim: { 
-        'mcorp': { exports: 'MCorp'}
-    }
-});
-
-// Motion Corporation boilerplate
-define (['mcorp'], function (MCorp) {
-    var APPID = "8456579076771837888";
-    return function (onReady) {
-        var app = MCorp.app(APPID, {anon:true});
-        app.run = function () {
-            if (document.readyState === "complete") onReady(app.motions);
-        };
-        window.onload = function () {
-            if (app.readyState === app.STATE["OPEN"]) onReady(app.motions);
-        };
-        app.init();
-    }; 
-});
-
-``` 
-
-Then create index.html
+Create index.html
 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- Third party : RequireJs-->
-    <script data-main="app" src="require.js"></script>
-    <script type="text/javascript">
-    require(['./app'], function (app) {
-        require(['sequencer'], function (mod) { 
-            app(function (timingObjects) {
-                // timingObjects are ready and sequencer module loaded
-                // "shared" is name of spesific timingObject defined within the Motion App
-                var timingObject = motions["shared"];
-                // create Sequencer
-                var s = new mod.Sequencer(timingObject);
-                // sequencer is operational 
-                // ... do your thing from here ... 
-
-            });
-        });
-    });
+  <head>
+    <script text="javascript" src="http://mcorp.no/lib/mcorp-2.0.js"></script>
+    <script text="javascript" src="/lib/sequencer.js"></script>
+    <script text="javascript">
+      var app = MCorp.app("mcorp_app_id", {anon:true});
+      app.run = function () {
+        var timingObject = app.motions['mcorp_name_of_motion'];
+        var s = new SEQUENCER.Sequencer(timingObject);
+        // timing object ready and sequencer created
+        // kick off application logic from here
+      };
+      if (document.readyState === "complete") app.init();
+      else window.onload = app.init;
     </script>
-</head>
-<body>
-    <div id="viewer"></div>
-</body>
+  </head>
+  <body>
+  </body>
+</html>
 ```
 
 
@@ -149,7 +114,6 @@ var viewer = function (sequencer, elem) {
         console.log(e.toString());
     };
     sequencer.on("enter", enter);
-    sequencer.on("change", enter);
     sequencer.on("exit", exit);
 };
 viewer(s, document.getElementById("viewer"));
@@ -284,4 +248,8 @@ ArraySequencer.prototype.getData = function (key) {
 };
 
 
+// Usage - one code line - create ArraySequencer and connect to UI
+viewer(new ArraySequencer(timingObject, array), document.getElementById("viewer"));
+
+```
 

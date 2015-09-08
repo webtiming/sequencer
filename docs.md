@@ -34,11 +34,17 @@ This documentation includes the following sections:
 <a name="module"></a> 
 ## Sequencer Module
 
-The sequencer module provides constructor functions for [Sequencer](#sequencer) and [Interval](#interval). The module is implemented as plain JavaScript and packaged as an [AMD](http://requirejs.org/) module.
-
+The sequencer module provides constructor functions for [Sequencer](#sequencer) and [Interval](#interval). The module is implemented as plain JavaScript and packaged for regular script inclusion as well as an [AMD](http://requirejs.org/) module for use with requirejs, see [helloworld](examples.html#helloworld) and [helloworld-require](examples.html#helloworld-require) for full examples. 
 
 ```javascript
-var mod = require("./sequencer");       // import sequencer module
+var mod;                                // sequencer module
+
+// regular script import
+mod = SEQUENCER;                        // 'SEQUENCER' property on global object 
+// require js module import
+mod = require("./sequencer");           // import sequencer module
+
+// shortcuts
 var Sequencer = mod.Sequencer;          // Sequencer constructor function
 var Interval = mod.Interval;            // Interval constructor function
 var inherit = mod.inherit;              // utility function, used only in the context of specializing the Sequencer
