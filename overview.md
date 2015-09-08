@@ -4,23 +4,32 @@ title: Overview
 ---
 
 ## Introduction
-This page gives a wider overview of the Sequencer concept, including term definitions, design principles, scope/limitation, importance/applicability/usage and future work.
+This page gives a wider overview of the Sequencer concept, including term definitions, related work, design goals, scope/limitation, importance/applicability/usage and future work.
 
-## Definition
+## Term definition
 
+> To be completed...
+
+<!--
 In this document, the process of translating a timed script or timed data into timed execution is broadly referred to as sequencing.
 - timed data
 - dimension/timeline
 - motion along dimension
+-->
 
-## Related Work
+## Related work
 
+> To be completed...
+
+<!--
 Sequencing functionality is already provided by existing media frameworks, for example text tracks  integrated with  media elements, audio sample scheduling within the Web Audio API [[WEBAUDIO]], or timegraph traversal within SMIL Timing [[SMIL3]]. 
+-->
 
+## Design goals
 
-## Requirements
+A general purpose sequencing mechanisms for the Web, such as [Sequencer](index.html) or [timing text track](http://webtiming.github.io/timingobject/#timing-text-track), would be very useful. It would mean that various kinds of timed data and UI components can easily be integrated and used for timed presentation, without requiring application programmers to re-invent necessary timing logic. Furthermore, by integrating a general purpose sequencing mechanism are with the [timing object](http://webtiming.github.io/timingobject), media products using this mechanims would readily be open for synchronization and external control, both in single-device and multi-device scenarios.
 
-Similarly, the ability to connect sequencing logic (e.g. a text track) to a timing object would be very useful. It would allow timed data to be time-aligned (synchronized) with any other timed component, provided only that they are directed by the same timing object. Crucially, this would also be true in the multi-device scenario, as distributed timing objects may connect to and be directed by the same online timing source. Below we list important design goals for a general purpose sequencing mechanism for the Web.  
+Below we list important design goals for a general purpose sequencing mechanism for the Web.  
 
 - **Data-independency**. The sequencing mechanism should be implemented without reference to any specific data format. This way, timing support for a wide range of data formats can be provided, including application-specific data formats.
  
@@ -34,8 +43,17 @@ Similarly, the ability to connect sequencing logic (e.g. a text track) to a timi
 
 - **Simple usage**
 
+
+# Scope and limitations
+
+> To be completed...
+
+
 # Importance
 
+> To be completed...
+
+<!--
 ## Programming tool
 In short, the sequencing mechanism should be made available as a generic programming concept/tool. This would presumably benefit both individual programmers as well as developers of advanced media frameworks. 
 - Should be available in any kind of 
@@ -47,3 +65,14 @@ In short, the sequencing mechanism should be made available as a generic program
 - decoupling sequencer from timing resource and data and UI gives a lot of flexibility.
 
 ## Defining the state of linear media
+-->
+
+
+# Applicability and usage
+
+> To be completed...
+
+
+# Future work
+
+> To be completed...

@@ -1,7 +1,7 @@
 var DEMO = function () {
 
 
-	var text = "This animation is driven by the sequencer and synchronized globally through Shared Motion! Open the page on another device and prepare to be amazed!";
+	var text = "This animation is driven by the Sequencer and synchronized globally through TimingObject and Shared Motion! Open the page on another device, click forwards and prepare to be amazed!";
 	var range = [0.0, 100.0];
 	var scale = function (offset, oldLength, newLength) {
 		return offset*range[1]/text.length;
