@@ -147,7 +147,7 @@ document.getElementById('reset').onclick = function () {timingObject.update(0.0,
 <a name="specialization"></a>
 ## Sequencer Specialization
 
-The Sequencer is by default data agnostic and can therefore be used by any application-specific data model. However in some cases it may be useful to integrate the Sequencer with a specific data model. In particular, if the programmer would like Sequencer events to include objects from the data model (instead of just keys), [Sequencer specialization](#specialization) supports this. Sequencer specialization is implemented through inheritance. Sequencer specialization only requires implementation of two methods.
+The Sequencer is by default data agnostic and can therefore be used by any application-specific data model. However in some cases it may be useful to integrate the Sequencer with a specific data model. In particular, if the programmer would like Sequencer events to include objects from the data model (instead of just keys), [Sequencer specialization](#specialization) supports this. Sequencer specialization is implemented through inheritance. Sequencer specialization only requires implementation of two methods. A complete example is provided in [special](examples/special.html).
 
 #### .loadData()
 
@@ -156,7 +156,7 @@ This method is called by the Sequencer constructor and allows the programmer to 
 #### .getData(key)
 - param {string} [key] unique key
 
-This method is used by the Sequencer internally whenever it needs to resolve the mapping from key to object in data model. The Sequencer uses this so that it can make objects from the data model available in "enter" and "exit" events - under data property of [SequencerEArg](/sequencer/docs.html#earg) or [SequencerCue](/sequencer/docs.html#cue) objects.
+This method is used by the Sequencer internally whenever it needs to resolve the mapping from key to object in data model. The Sequencer uses this so that it can make objects from the data model available in "enter" and "exit" events - under data property of [SequencerEArg](docs.html#earg) or [SequencerCue](docs.html#cue) objects.
 
 
 ### Template Sequencer Specialization
