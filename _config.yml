@@ -3,7 +3,7 @@ markdown: redcarpet
 highlighter: pygments
 #safe: true
 #lsi: false
-#baseurl: /sequencer
+baseurl: /sequencer
 
 
 

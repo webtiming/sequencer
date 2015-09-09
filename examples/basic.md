@@ -22,7 +22,7 @@ s.request()
 ```
 
 ### Controls
-This demo page does not include its own controls for the timing object driving the Sequencer. Instead, open timing object controls [ctrls](/examples/ctrl.html) in a different browser tab or window (even on another computer) in order to control playback of timed data. 
+This demo page does not include its own controls for the timing object driving the Sequencer. Instead, open timing object controls [ctrls](examples/ctrl.html) in a different browser tab or window (even on another computer) in order to control playback of timed data. 
 
 
 For example, run the timing object back and forth between 0.0 and 10.0 to see the event log and timed changes to active keys.
@@ -38,6 +38,6 @@ Detailed event information is logged here, formatted as follows :
 
 [point] key interval verbType directionType pointType delay
 
-See [SequencerEArg](/docs.html#earg) for detailed information.
+See [SequencerEArg](../docs.html#earg) for detailed information.
 
 <ul id="log"></ul>

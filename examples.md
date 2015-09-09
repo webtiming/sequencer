@@ -11,7 +11,7 @@ Here is a collection of links to example code.
 
 This provides a Hello World example, using regular script includes.
 
-[helloworld](/examples/hw.html)
+[helloworld](examples/hw.html)
 
 
 <a name="helloworld-require"></a>
@@ -19,17 +19,17 @@ This provides a Hello World example, using regular script includes.
 
 This provides a Hello World example, using requirejs for script includes.
 
-[helloworld-require](/examples/hw-require.html)
+[helloworld-require](examples/hw-require.html)
 
 
 ### Timing Object Controls
 
 This provides controls for the timing object used in all examples on this site.
 
-[ctrl-timingobject](/examples/ctrl.html)
+[ctrl-timingobject](examples/ctrl.html)
 
 ### Basic
 
 This provides an example of basic Sequencer operation
 
-[basic](/examples/basic.html) 
+[basic](examples/basic.html) 

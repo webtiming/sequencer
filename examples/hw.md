@@ -7,8 +7,8 @@ Minimal Web page setting up Shared Motion as timing object and initializing the 
 
 Scripts:
 
-- [sequencer.js](/lib/sequencer.js)
-- [sequencer-min.js](/lib/sequencer-min.js)
+- [sequencer.js](../lib/sequencer.js)
+- [sequencer-min.js](../lib/sequencer-min.js)
 
 
 ```html
@@ -34,4 +34,4 @@ Scripts:
 </html>
 ```
 
-Test [helloworld.html](/examples/helloworld.html)
+Test [helloworld.html](../examples/helloworld.html)
