@@ -29,7 +29,7 @@ The [TimingObject](http://webtiming.github.io/timingobject) is a simple concept 
 Read more on the Sequencer concept in [Overview](overview.html)
 
 
-## Relation to Timing Object Specification
+## Relation to timing object specification
 The draft specification for the [TimingObject](http://webtiming.github.io/timingobject) specifies [TimingTextTrack](http://webtiming.github.io/timingobject/#timed-data-and-the-timing-object) as a sequencing mechanism integrated with the timing object. TimingTextTracks serve as an extension of the existing [TextTrack](http://www.w3.org/html/wg/drafts/html/master/semantics.html#text-track) concept. The JavaScript Sequencer has the same function as a TimingTextTrack, but API and internal algorithms are not identical. The Sequencer may serve as a goto solution for developers until standardization work on TimingTextTracks is completed. The Sequencer may also serve as reference for implementors of TimingTextTrack.
 
 
