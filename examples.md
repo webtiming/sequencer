@@ -40,3 +40,10 @@ This provides an example of basic Sequencer operation.
 This provides an example of sequencing an array of timed data.
 
 [array](examples/array.html)
+
+
+### Sequencer Specialization
+
+This provides an example of how the Sequencer may be specialized to integrate with a specific data model.
+
+[specialize](examples/special.html)

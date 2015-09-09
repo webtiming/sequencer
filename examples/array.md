@@ -6,7 +6,6 @@ demojs: array
 ---
 
 
-### Demo
 This demonstrates multi-device timed playback of timed data from an array.
 
 ```javascript
@@ -42,7 +41,7 @@ var array = [
 ```
 
 ## Controls
-This demo page does not include its own controls for the timing object driving the Sequencer. Instead, open timing object controls [ctrls](examples/ctrl.html) in a different browser tab or window (even on another computer) in order to control playback of timed data. 
+This demo page does not include its own controls for the timing object driving the Sequencer. Instead, open timing object controls [ctrl](examples/ctrl.html) in a different browser tab or window (even on another computer) in order to control playback of timed data. 
 
 
 
