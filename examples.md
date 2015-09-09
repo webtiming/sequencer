@@ -28,3 +28,8 @@ This provides controls for the timing object used in all examples on this site.
 
 [ctrl-timingobject](/examples/ctrl.html)
 
+### Basic
+
+This provides an example of basic Sequencer operation
+
+[basic](/examples/basic.html) 
