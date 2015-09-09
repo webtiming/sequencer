@@ -28,8 +28,15 @@ This provides controls for the timing object used in all examples on this site.
 
 [ctrl-timingobject](examples/ctrl.html)
 
-### Basic
+### Basic Sequencing
 
-This provides an example of basic Sequencer operation
+This provides an example of basic Sequencer operation.
 
 [basic](examples/basic.html) 
+
+
+### Array Sequencing
+
+This provides an example of sequencing an array of timed data.
+
+[array](examples/array.html)

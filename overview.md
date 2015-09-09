@@ -46,6 +46,11 @@ Below we list important design goals for a general purpose sequencing mechanism 
 
 # Scope and limitations
 
+<!-- 
+- expanding the scope from subtitles
+- limited scopt to intervals
+-->
+
 > To be completed...
 
 
