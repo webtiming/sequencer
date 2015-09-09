@@ -19,13 +19,13 @@ var DEMO = function () {
 		// initialise DOM
 		var html = "";
 		html += "<p id='buttons'>";
-		html += "<button id='tostart'>ToStart</button>";
-		html += "<button id='fastbackward''>FastBackwards</button>";
-		html += "<button id='backward''>Backwards</button>";
+		html += "<button id='tostart'>Start</button>";
 		html += "<button id='pause'>Pause</button>";
-		html += "<button id='forward'>Forwards</button>";
-		html += "<button id='fastforward'>FastForwards</button>";
-		html += "<button id='toend'>ToEnd</button>";
+		html += "<b><button id='forward'>Play</button></b>";
+		html += "<button id='backward''>Backwards</button>";
+		html += "<button id='toend' style='margin-right:10px'>End</button>";
+		html += "<button id='fastbackward''>\<\<</button>";	
+		html += "<button id='fastforward'>\>\></button>";
 		html += "<b><span id='position' style='float:right'></span></b>";
 		html += "</p>";
 		html += "<p>";

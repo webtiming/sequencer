@@ -23,13 +23,18 @@ To address these issues, the Sequencer is designed with two main goals.
 **1) Isolate sequencing logic from data and UI.**
 The Sequencer is pure JavaScript and fully encapsulates sequencing logic, without introducing any dependencies to specific data formats or UI elements. By virtue of being data-agnostic and UI-agnostic, the Sequencer makes common timing logic available for any Web application and any purpose.
 
-**2) Use the HTMLTimingObject as timing source.**
-The [HTMLTimingObject](http://webtiming.github.io/timingobject) is a simple concept encapsulating both timing and timing controls. It is proposed as a unifying approach for temporal interoperability in the Web, and prepared for standardization by the [W3C Multi-device Timing Community Group](https://www.w3.org/community/webtiming/). In short, by sharing a single timing object as timing source, independent Sequencers may be precisely coordinated in time. Crucially, this is also true in the distributed scenario, as timing objects support synchronization with online timing objects. So, by using the timing object as timing source, the Sequencer is ready to support precise sequencing in both single-device as well as multi-device scenarios.
+**2) Use TimingObject as timing source.**
+The [TimingObject](http://webtiming.github.io/timingobject) is a simple concept encapsulating both timing and timing controls. It is proposed as a unifying approach for temporal interoperability in the Web, and prepared for standardization by the [W3C Multi-device Timing Community Group](https://www.w3.org/community/webtiming/). In short, by sharing a single timing object as timing source, independent Sequencers may be precisely coordinated in time. Crucially, this is also true in the distributed scenario, as timing objects support synchronization with online timing objects. So, by using the timing object as timing source, the Sequencer is ready to support precise sequencing in both single-device as well as multi-device scenarios.
 
 Read more on the Sequencer concept in [Overview](overview.html)
 
+
+## Relation to Timing Object Specification
+The draft specification for the [TimingObject](http://webtiming.github.io/timingobject) specifies [TimingTextTrack](http://webtiming.github.io/timingobject/#timed-data-and-the-timing-object) as a sequencing mechanism integrated with the timing object. TimingTextTracks serve as an extension of the existing [TextTrack](http://www.w3.org/html/wg/drafts/html/master/semantics.html#text-track) concept. The JavaScript Sequencer has the same function as a TimingTextTrack, but API and internal algorithms are not identical. The Sequencer may serve as a goto solution for developers until standardization work on TimingTextTracks is completed. The Sequencer may also serve as reference for implementors of TimingTextTrack.
+
+
 ## Dependencies
-The Sequencer implementation depends on [Shared Motion](http://motioncorporation.com), a JavaScript implementation of the [HTMLTimingObject](http://webtiming.github.io/timingobject), provided by the [Motion Corporation](http://motioncorporation.com). Shared Motion comes with built-in support for online synchronization. The Sequencer will serve as reference implementation for sequencing logic integrated with the HTMLTimingObject. Both the Sequencer and Shared Motion are vanilla JavaScript and should run in every modern Web browser.
+The Sequencer implementation depends on [Shared Motion](http://motioncorporation.com), a JavaScript implementation of the [TimingObject](http://webtiming.github.io/timingobject), provided by the [Motion Corporation](http://motioncorporation.com). Shared Motion comes with built-in support for online synchronization. The Sequencer will be updated to interface with implementation of TimingObject API. Both the Sequencer and Shared Motion are vanilla JavaScript and should run in every modern Web browser.
 
 For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion.
 
