@@ -23,7 +23,9 @@ var DEMO = function () {
 		html += "<button id='pause'>Pause</button>";
 		html += "<b><button id='forward'>Play</button></b>";
 		html += "<button id='backward''>Backwards</button>";
-		html += "<button id='toend' style='margin-right:10px'>End</button>";
+		
+		//html += "<button id='toend' style='margin-right:10px'>End</button>";
+		
 		html += "<button id='fastbackward''>\<\<</button>";	
 		html += "<button id='fastforward'>\>\></button>";
 		html += "<b><span id='position' style='float:right'></span></b>";
@@ -64,13 +66,16 @@ var DEMO = function () {
 
 		// init bold face
 		this.to.on("change", function () {
-			var pos = this.to.query().pos;
-			var leftInterval = new Interval(0.0, pos, true, true);
+			var v = this.to.query();
+			var leftInterval = new Interval(0.0, v.pos, true, true);
 			this.sequencer.getCues().forEach(function (cue) {
 				var el = document.getElementById(cue.key);
 				if (leftInterval.overlapsInterval(cue.interval)) el.classList.add("bold");
 				else el.classList.remove("bold");
 			});
+			if (v.pos === 100 && v.vel === 0) {
+				this.to.update(null, -1.0);
+			}			
 		}, this);
 	
 		// register event handlers on sequencer
