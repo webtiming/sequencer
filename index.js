@@ -24,7 +24,7 @@ var DEMO = function () {
 		html += "<b><button id='forward'>Play</button></b>";
 		html += "<button id='backward''>Backwards</button>";
 		
-		//html += "<button id='toend' style='margin-right:10px'>End</button>";
+		html += "<button id='toend' style='margin-right:10px'>End</button>";
 		
 		html += "<button id='fastbackward''>\<\<</button>";	
 		html += "<button id='fastforward'>\>\></button>";
@@ -72,10 +72,7 @@ var DEMO = function () {
 				var el = document.getElementById(cue.key);
 				if (leftInterval.overlapsInterval(cue.interval)) el.classList.add("bold");
 				else el.classList.remove("bold");
-			});
-			if (v.pos === 100 && v.vel === 0) {
-				this.to.update(null, -1.0);
-			}			
+			});			
 		}, this);
 	
 		// register event handlers on sequencer
