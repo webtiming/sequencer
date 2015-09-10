@@ -51,7 +51,7 @@ var inherit = mod.inherit;              // utility function, used only in the co
 var SequencerError = mod.SequencerError // Error type used by Sequencer
 ```
 
-The sequencer module depends on [Shared Motion](http://motioncorporation.com), a JavaScript implementation of the [HTMLTimingObject](http://webtiming.github.io/timingobject), provided by the [Motion Corporation](http://motioncorporation.com). Shared Motion comes with built-in support for online synchronization. The Sequencer will serve as reference implementation for sequencing logic integrated with the HTMLTimingObject. Both the Sequencer and Shared Motion are plain JavaScript and should run in every modern Web browser.
+The sequencer module depends on [Shared Motion](http://motioncorporation.com), a JavaScript implementation of the [TimingObject](http://webtiming.github.io/timingobject), provided by the [Motion Corporation](http://motioncorporation.com). Shared Motion comes with built-in support for online synchronization. The Sequencer will serve as reference implementation for sequencing logic integrated with the TimingObject. Both the Sequencer and Shared Motion are plain JavaScript and should run in every modern Web browser.
 
 
 
