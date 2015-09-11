@@ -48,7 +48,11 @@ var DEMO = function () {
 			else if (elem.id === "fastbackward") self.to.update(null, -3.0);
 			else if (elem.id === "backward") self.to.update(null, -1.0);
 			else if (elem.id === "pause") self.to.update(null, 0.0);
-			else if (elem.id === "forward") self.to.update(null, 1.0);
+			else if (elem.id === "forward") {
+				var v = self.to.query();
+				if (v.pos === 100 && v.vel === 0) self.to.update(0.0, 1.0);
+				else self.to.update(null, 1.0);
+			}
 			else if (elem.id === "fastforward") self.to.update(null, 3.0);
 			else if (elem.id === "toend") self.to.update(100.0);
 		}
