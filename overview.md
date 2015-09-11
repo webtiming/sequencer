@@ -6,16 +6,26 @@ title: Overview
 ## Introduction
 This page gives a wider overview of the Sequencer concept, including term definitions, related work, design goals, scope/limitation, importance/applicability/usage and future work.
 
-## Term definition
+## Media Model
 
-> To be completed...
+**Timeline**
+> A timeline is simply the set of floating point numbers p where <code>min <= p && p =< max</code>. <code>min</code> and <code>max</code> are floating point numbers and may take on values <code>-Infinity</code> or <code>Infinity</code>. Points on the timeline are associated with a unit.
 
-<!--
-In this document, the process of translating a timed script or timed data into timed execution is broadly referred to as sequencing.
-- timed data
-- dimension/timeline
-- motion along dimension
--->
+**Timing object**
+> Defines a timeline and movement of a point along this timeline. No movement is considered a special case of movement. The timing object supports continuous movements (expressed through velocity and acceleration) as well as discrete jumps on the timeline. A discrete jumps from A to B here implies that no time was spent on the transition and that no point p between A and B was visited.
+
+**Timed data** 
+> Objects, whose validity is defined in reference to an axis. For instance, the validity of subtitles are typically defined in reference to a media timeline. The Sequencer requires object validity to be defined in terms of points or intervals on the axis. Timed scripts are one class of timed data where objects represent operations or commands to be executed.
+
+**Sequencing**
+> The process of translating timed data or timed script into timed execution.
+
+**Timed Media**
+> A timed media presentation is created by mapping media content to a common timeline, and applying movement along this timeline. Note that the existence of a media presentation does not depend on content. This implies that timed playback is well defined, even if no content is defined for the media presentation. It also implies that a media presentation may dynamically replace all its content during presentation. Multiple timelines/timingobjects may be defined, and media content may define validity with respect to each.
+
+**Multi-device Timed Media**
+> A timed media presentation where at least one timeline/timing object is defined by a timing object that is synchronized across a network.
+
 
 ## Related work
 
@@ -35,7 +45,7 @@ Below we list important design goals for a general purpose sequencing mechanism 
  
 - **UI-independency**. The sequencing mechanism should not be bundled with any predefined UI elements or UI frameworks. This ensures that programmers are free to exploit it for any purpose, including purposes that require custom UI solutions or no UI at all. General purpose UI components for timed presentation may still be developed and shared independently.
 
-- **Precise timing**. The sequencing mechanism should be based on a precise timeout mechanism (e.g. setTimeout) for enter/exit events to be emitted with high precision, ideally correct down to a single millisecond.
+- **Precise timing**. The sequencing mechanism should be based on a precise timeout mechanism (e.g. setTimeout) for enter/exit events to be emitted with high precision, ideally correct down to a single millisecond. This additionally ensures effectiveness with respect to power consumption.
 
 - **Expressive controls**. The sequencing mechanism should support any motion supported by the timing object, including fast forward, slow motion, backwards playback, immediate jumps or acceleration. This way, the sequencing mechanism may support a variety of media control primitives, appropriate for a wide range of media applications.
 
