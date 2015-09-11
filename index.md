@@ -12,11 +12,11 @@ demojs: index
 </style>
 <div id="demo" style="display:block;height:110px"></div>
 
-## The Sequencer in a nutshell
+## Sequencer in a nutshell
 
 > The *Sequencer* is a simple and generic mechanism for *timed execution* of *timed data*.
 
-Sequencing is not a new concept. Frameworks for timed media or timed presentation are always built around some form of sequencing logic. However, implementations are typically internal, custom to specific media formats, and tightly integrated with predefined UI components. Furthermore, media clocks and media controls (e.g. play/pause) are also tightly integrated, making it hard to synchronize with other timed media.
+*Sequencing* broadly refers to the process of translating a timed script into timed execution. Sequencing is not a new concept. Frameworks for timed media or timed presentation are always built around some form of sequencing logic. However, implementations are typically internal, custom to specific media formats, and tightly integrated with predefined UI components. Furthermore, media clocks and media controls (e.g. play/pause) are also tightly integrated, making it hard to synchronize with other timed media.
 
 To address these issues, the Sequencer is designed with two main goals.
 
