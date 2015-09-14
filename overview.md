@@ -8,32 +8,37 @@ This page gives a wider overview of the Sequencer concept, including term defini
 
 ## Media Model
 
-**Timeline**
-> A timeline is simply the set of floating point numbers p where <code>min <= p && p =< max</code>. <code>min</code> and <code>max</code> are floating point numbers and may take on values <code>-Infinity</code> or <code>Infinity</code>. Points on the timeline are associated with a unit.
+- **Timeline** A timeline is simply the set of floating point numbers p where min \<= p \<= max. min and max are floating point numbers and may take on values -Infinity or Infinity. Values on the timeline are usually associated with a unit, such as seconds, frame counter or slide number.
 
-**Timing object**
-> Defines a timeline and movement of a point along this timeline. No movement is considered a special case of movement. The timing object supports continuous movements (expressed through velocity and acceleration) as well as discrete jumps on the timeline. A discrete jumps from A to B here implies that no time was spent on the transition and that no point p between A and B was visited.
+- **Timing object** Defines a timeline and movement of a point along this timeline. Point *not moving* (i.e. standing still or paused) is considered a special case of movement. The timing object supports continuous movements (expressed through velocity and acceleration) as well as discrete jumps on the timeline. A discrete jumps from A to B here implies that no time was spent on the transition and that no point p between A and B was visited.
 
-**Timed data** 
-> Objects, whose validity is defined in reference to an axis. For instance, the validity of subtitles are typically defined in reference to a media timeline. The Sequencer requires object validity to be defined in terms of points or intervals on the axis. Timed scripts are one class of timed data where objects represent operations or commands to be executed.
+- **Timed data** Objects, whose validity is defined in reference to a timeline. For instance, the validity of subtitles are typically defined in reference to a media timeline. Points and intervals on the timeline is a common way of defining object validity, but not the only way. Timed scripts are a special case of timed data where objects represent operations or commands to be executed.
 
-**Sequencing**
-> The process of translating timed data or timed script into timed execution.
+- **Sequencing** The process of translating timed data or a timed script into timed execution.
 
-**Timed Media**
-> A timed media presentation is created by mapping media content to a common timeline, and applying movement along this timeline. Note that the existence of a media presentation does not depend on content. This implies that timed playback is well defined, even if no content is defined for the media presentation. It also implies that a media presentation may dynamically replace all its content during presentation. Multiple timelines/timingobjects may be defined, and media content may define validity with respect to each.
+- **Timed Media** A timed media presentation is created by mapping timed media content (i.e. timed data) to a common timeline, and applying movement along this timeline. *So, timed media is ultimately created from two distinct entities; timing resources and timed content resources.* No timed content (i.e. empty) is considered a special case. This way, a media presentation may dynamically replace all its timed content during playback/presentation, yet remain well defined at all times. Multiple timingobjects/timelines may be defined for a single media presentation, and media content may define validity with respect to multiple timelines.
 
-**Multi-device Timed Media**
-> A timed media presentation where at least one timeline/timing object is defined by a timing object that is synchronized across a network.
+- **Online Timed Media** Online timed media is media presentation where at least one resource (timing resource or content resource) is connected to an online resource.
 
+- **Multi-device Timed Media** A timed media presentation where at least one timing object is connected to an online timing resource. It follows that multi-device timed media is also online timed media.
+
+> Timed media is ultimately created from two distinct entities; timing resources and timed content resources.
 
 ## Related work
+
+All media framework includes some form of timeline, playback controls and sequencing logic.
+
+In the Web, text track support is integrated with media elements. The current text trac implementation provides an API that is quite similar to the Sequencer, but suffers a few limitations. The precision of enter/exit events is coarse as their execution is ... 
 
 > To be completed...
 
 <!--
 Sequencing functionality is already provided by existing media frameworks, for example text tracks  integrated with  media elements, audio sample scheduling within the Web Audio API [[WEBAUDIO]], or timegraph traversal within SMIL Timing [[SMIL3]]. 
+
+limited to points and intervals
 -->
+
+
 
 ## Design goals
 
@@ -54,14 +59,8 @@ Below we list important design goals for a general purpose sequencing mechanism 
 - **Simple usage**
 
 
-# Scope and limitations
 
-<!-- 
-- expanding the scope from subtitles
-- limited scopt to intervals
--->
 
-> To be completed...
 
 
 # Importance
@@ -84,6 +83,8 @@ In short, the sequencing mechanism should be made available as a generic program
 
 
 # Applicability and usage
+
+<!-- various topic from chess demo exercise -->
 
 > To be completed...
 
