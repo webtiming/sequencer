@@ -1313,7 +1313,7 @@ define(
 		    	setTimeout(function () {
 		    		var immediateDone = self._initHandler(handler);
 		    		if (!immediateDone) {
-		    			handler["_immediatePending_" + what + this.ID] = false;
+		    			handler["_immediatePending_" + what + self.ID] = false;
 		    		}
 		    	}, 0);
 		    }
