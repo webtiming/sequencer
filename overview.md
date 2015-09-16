@@ -4,8 +4,15 @@ title: Overview
 ---
 
 ## Introduction
-This page gives a wider overview of the Sequencer concept, including term definitions, related work, design goals, scope/limitation, importance/applicability/usage and future work.
+This page gives a wider overview of the Sequencer concept. 
 
+- [term definitions](#mediamodel) 
+- [design goals](#designgoals)
+- [related work](#relatedwork) 
+- [importance](#importance)
+- [future work](#futurework)
+
+<a name="mediamodel"></a>
 ## Media Model
 
 - **Timeline** A timeline is simply the set of floating point numbers p where min \<= p \<= max. min and max are floating point numbers and may take on values -Infinity or Infinity. Values on the timeline are usually associated with a unit, such as seconds, frame counter or slide number.
@@ -25,7 +32,7 @@ This page gives a wider overview of the Sequencer concept, including term defini
 > Timed media is created from two distinct entities; timing objects and timed content.
 
 
-
+<a name="designgoals"></a>
 ## Design goals
 
 A general purpose sequencing mechanisms for the Web, such as [Sequencer](index.html) or [timing text track](http://webtiming.github.io/timingobject/#timing-text-track), would be very useful. It would mean that various kinds of timed data and UI components can easily be integrated and used for timed presentation, without requiring application programmers to re-invent necessary timing logic. Furthermore, by integrating a general purpose sequencing mechanism are with the [timing object](http://webtiming.github.io/timingobject), media products using this mechanims would readily be open for synchronization and external control, both in single-device and multi-device scenarios.
@@ -45,8 +52,7 @@ Below we list important design goals for a general purpose sequencing mechanism 
 - **Simple usage**
 
 
-
-
+<a name="relatedwork"></a>
 ## Related work
 
 All media frameworks includes some form of timeline, playback controls and sequencing logic.
@@ -65,38 +71,46 @@ Synchronized Multimedia Integration Language [SMIL](http://www.w3.org/TR/SMIL) i
 
 
 
+<a name="importance"></a>
+## Importance
+
+#### Any kind of timed data, for any purpose
+
+The Sequencer function and API is inspired by text tracks supported by HTML media elements. Unfortunately, the close integration between text tracks and media elements may have obscured the full potential of such sequencing mechanisms. It is commonly believed that the utility is limited to media supplementing video. In contrast, by isolating sequencer logic from media elements, specific data formats and UI solutions, the value of the sequencer as a generic programming tool becomes much more evident. 
+
+- Sequencer logic is easily recognised as a part of any media framework. By providing the Sequencer as a ready made component, programmers may easily build new frameworks and timed components.
+- The sequencer may be used to produce web-based visualisations from any kind of timed data, or to organize the correct execution of any timed operation. Examples of timed resources might include timed images, text, CSS, JSON, HTML, scripts, geolocations, sensor-data, SVG, audio samples, canvas operations etc. In other words, anything Web. 
+- The sequencer may be used for timed actions that do not result in output (e.g. visual/audio) at all. For instance, consider timed pre-fetching of data or timed network requests in a test setup. 
+- The ability to deliver data at the correct time may also be used to reduce complexity in content transfer. In particular, real-time (multi-cast) streams are often used as a mechanism to preserve time-ordering and timing across a network - even though timing relations may be corrupted by transport delay and jitter. With timestamped messages and a sequencer on the receiving end, all temporal relations may be correctly re-created, independent of the mechanism used for data transfer. This gives more flexibility in the choice of transport mechanism, and reduces complexity at the sender-side.
 
 
+#### Defining the state of linear media
+
+The sequencer is particularly suited for the construction of linear media. Essientially, the construction of linear media comes down to a few central challenges.
+
+1. how the linear state is represented. The state must be well defined for all positions on the timeline.
+2. how the linear state is used to render output (e.g. visuals) at a given position
+3. how the linear state is used to modify the rendered output (e.g. visuals) during playback (relative to previous rendering).
+
+Linear state can be represented in more than one way. For example, consider the linear presentation of a chess game. The linear state of this game may be defined either as 1) a sequencer of board positions, or 2) as a sequence of piece moves. Which to choose is up to the programmer.
+
+1) If linear state is a sequence of board positions, each board position will be mapped to an interval on the timeline. Enter and exit events from the sequencer will then trigger state transitions in the presentation. 
+
+2) If linear state is a sequencer of piece moves, each piece move will be mapped to a singular point on the timeline. Events from the sequencer may then be used to calculate board positions by applying a piece move to the previous position.
+
+Approach 2) is somewhat similar to the classical model for state representation in continuous media, where media content is represented as a sequence of snapshots (I-frames) and virtual snapshots are calculated from diffs (P-frames, B-frames). This model is attractive for any kind of sensor data stream where each data point has a large footprint in bytes, but where diffs between data points can be expressed more effectively. By mapping snapshots to intervals and diffs to singular points, the Sequencer might be used as playback engine also for such a data model.   
 
 
+<a name="futurework"></a>
+## Future work
 
+The Sequencer is fairly complete, yet there may still be avenues for further work.
 
-# Importance
+#### New Sequencer types and features
 
-> To be completed...
+- This Sequencer only supports timing based on interval and singular points on the timeline. Though this will likely be of common utility, other ways of mapping objects to a timeline might also be conceivable.  
+- Repetition and periodicity is also a common theme in timed data, particularly in the context of music. The current Sequencer does not have any support for this. It is possible to solve this by allowing individual cues, or all cues within an interval, to be associated with a repeat interval. Another approach to the same effect would be emulate a timing object which loops inifinitely over a specific interval on the timeline.
 
-<!--
-## Programming tool
-In short, the sequencing mechanism should be made available as a generic programming concept/tool. This would presumably benefit both individual programmers as well as developers of advanced media frameworks. 
-- Should be available in any kind of 
+#### Sequencer implementations in other languages.
+The value of this timing model and concepts like timing objects and sequencers, is not limited to JavaScript and the Web. Implementations of these concepts for other programming languages and environments would ultimately allow temporal interoperability across a variety of platforms. For a programmer, the experience of controlling a multi-device Web presentation from a terminal application, and vice versa, would likely highlight the great value of temporal interoperability.
 
-## Any kind of data
-- the view of utility is typically limited to subtitles.
-
-## Flexibility
-- decoupling sequencer from timing resource and data and UI gives a lot of flexibility.
-
-## Defining the state of linear media
--->
-
-
-# Applicability and usage
-
-<!-- various topic from chess demo exercise -->
-
-> To be completed...
-
-
-# Future work
-
-> To be completed...
