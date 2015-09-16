@@ -22,21 +22,7 @@ This page gives a wider overview of the Sequencer concept, including term defini
 
 - **Multi-device Timed Media** A timed media presentation where at least one timing object is connected to an online timing resource. It follows that multi-device timed media is also online timed media.
 
-> Timed media is ultimately created from two distinct entities; timing resources and timed content resources.
-
-## Related work
-
-All media framework includes some form of timeline, playback controls and sequencing logic.
-
-In the Web, text track support is integrated with media elements. The current text trac implementation provides an API that is quite similar to the Sequencer, but suffers a few limitations. The precision of enter/exit events is coarse as their execution is ... 
-
-> To be completed...
-
-<!--
-Sequencing functionality is already provided by existing media frameworks, for example text tracks  integrated with  media elements, audio sample scheduling within the Web Audio API [[WEBAUDIO]], or timegraph traversal within SMIL Timing [[SMIL3]]. 
-
-limited to points and intervals
--->
+> Timed media is created from two distinct entities; timing objects and timed content.
 
 
 
@@ -57,6 +43,28 @@ Below we list important design goals for a general purpose sequencing mechanism 
 - **Dynamic data** The sequencing mechanism should allow modifications of timed data to safely occur at any time, with immediate and consistent effects, and without introducing any added complexity for the programmer. This would enable both live authoring and live viewing of dynamic timed media, applicable in both single-device and collaborative, multi-device scenarios.
 
 - **Simple usage**
+
+
+
+
+## Related work
+
+All media frameworks includes some form of timeline, playback controls and sequencing logic.
+
+#### TextTracks
+In the Web, text track support is integrated with media elements, allowing for instance subtitles and chapter information to be aligned with video playback. The text tracks are open for any data, but the video UI logic is set up to recognize certain track types such as subtitles of different languages. Similarly, [popcornjs](http://popcornjs.com) is a javascript framework allowing anything web to be synchronized with video playback. While this approach is useful, it also comes with some limitations. The timing model of the video element is push-based and non-deterministic, and the implementation of the sequencing logic seems to be poll-based, making the timing precision of enter/exit events rather coarse. Even worse, the tight integration with the video element does not simplify the construction of media presentations with multiple media elements, or with no media element at all.
+
+#### SMIL
+Synchronized Multimedia Integration Language [SMIL](http://www.w3.org/TR/SMIL) is a media framework allowing the integration and playback of various media types. Temporal aspects such as paralellism, sequentialism and repetitions may be expressed through a dedicated declarative language. SMIL addresses temporal interoperability, but only within the confines of the framework. Internally it likely has concepts similar to the timing object and the sequencer. However, these concepts are only available through the use of SMIL's declarative HTML-inspired authoring model. Declarative syntax like this quickly grows complicated and cumbersome to work with. Separation between content and presentation tends to be weak. Furthermore, declarative syntax is not highly flexible and often works best when media content is largely static. In contrast, real-world sources for timed data are often represented in application specific formats, and increasingly dynamic - particularly in live production scenarios.
+
+#### Web Animation
+[Web Animations](http://www.w3.org/TR/web-animations) is a framework for animations with progress controls. Concepts of timelines and progress controls are similar to the timing object. The animation framework is concerned with the construction animations from a variety of mathematical functions, how they can be combined and parameterized, and how they can be anchored to the timeline. These animations are then sampled in real time to provide gradual changes in output values. Various sampling rates can be specified for different animations. In contrast, the Sequencer operates based on timeouts instead of repeated evaluation. This means that the Sequencer primarily targets abrupt changes at precisely the correct time, rather than coarser poll-based detection of gradual change. For this reason, the Sequencer is more relevant for discrete phenomena, where timed objects are distributed more sparsely or un-evenly along the timeline. The Sequencer is also more efficient with respect to power consumption. Crucially, the main point is to combine a sequencers with animations. For instance, a sequencer can be used to load and un-load an animation at the correct time, whereas the use of animations can be limited to gradual phenomena, for instance smoothing the abrupt transitions driven by the sequencer. With animations driven by the timing object, animations and sequencers would even be precisely coordinated in time.
+
+#### Web Audio
+[Web Audio](http://webaudio.github.io/web-audio-api/) The Web Audio API offers web support for creation and playback of music. The core of this framework has much to do with timing, as the framework allows music to be generated based on sequencing of audio samples. Multi-device timing would enable these tools to be put to work in multi-device scenarios, such as collaborative live music production and multi-device concerts. If so, the internal sequencer of the Web Audio framework would have to integrate with the timing object. The current sequencer likely uses the system clock directly. If so, time shifting is likely not handled by its sequencer, but instead handled by re-mapping media samples to the timeline. Integration with timing object and sequencer would probably not be difficult and simplify integration of the Web Audio framework with other timed components, both in single and multi-device scenarios.
+
+
+
 
 
 
