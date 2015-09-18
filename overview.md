@@ -6,11 +6,49 @@ title: Overview
 ## Introduction
 This page gives a wider overview of the Sequencer concept. 
 
-- [term definitions](#mediamodel) 
+- [introduction](#introduction)
+- [music box analogy](#musicbox)
+- [media model](#mediamodel) 
 - [design goals](#designgoals)
 - [related work](#relatedwork) 
 - [importance](#importance)
 - [future work](#futurework)
+
+
+
+<a name="introduction"></a>
+## Introduction
+
+The Sequencer works on linear (or timed) data. By linear data we simply mean data that is somehow organised according to an axis, e.g., a point on the axis, or an interval. For example, a subtitle may be structured as follows, where properties *start* and *end* indicate validity related to the time-axis.
+
+```javascript
+{
+	data : "Hello!",
+	start : 24.3,
+	end : 28.7
+}
+```
+
+The figure below also illustrates linear data. It shows how a linear media presentation is defined by motion through linear data. The vertical line is the current position of the motion, defining at any time the “questions”, “movie clips”, “images”, “subtitles” and  “comments” that are valid at the current moment in time. Currently only a single “subtitle” is valid. As motion continues forward, this subtitle will shortly cease to be valid, and need to be removed as motion enters a segment with no subtitle.
+
+![alt text](img/lineardata.jpg "Linear data")
+
+
+<a name="musicbox"></a>
+## Music box analogy
+
+The music box below is another effective analogy for the Sequencer. As the illustration shows, the music box takes two kinds of input, linear media and motion. If there is motion, then the music box outputs sounds at the correct moments in time to produce a melody.
+
+The sequencer similarly works on linear data and motion, and it outputs callback invocation at the correct moments in time. Crucially though, the sequencer is superior to the music box in two important aspects:
+
+First, the sequencer is designed to support linear dynamic data. This implies that the raw material of the linear presentation may be modified at any time during playback, in terms of both media content and timing aspects. This may for instance be done directly by viewers interacting with the presentation, or by a production team. The sequencer ensures that this can occur safely, and it fully encapsulates the complexity that arise from this.
+
+Second. the sequencer runs on shared motion. It maintains time-consistency for any kind of movement supported by the shared motion, be it double speed, backwards, jumping ahead or even acceleration. Furthermore, by virtue of being based on shared motion, the sequencer may be remote controlled across the Internet. The sequencer may also play part in synchronised multi-device presentations, presenting the same linear data at multiple screens, or different (related) data sets in a multi-screen production.
+
+![alt text](img/musicbox.png "Music box")
+
+
+
 
 <a name="mediamodel"></a>
 ## Media Model
