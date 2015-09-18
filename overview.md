@@ -3,7 +3,6 @@ layout: default
 title: Overview
 ---
 
-## Introduction
 This page gives a wider overview of the Sequencer concept. 
 
 - [introduction](#introduction)
@@ -39,11 +38,11 @@ The figure below also illustrates linear data. It shows how a linear media prese
 
 The music box below is another effective analogy for the Sequencer. As the illustration shows, the music box takes two kinds of input, linear media and motion. If there is motion, then the music box outputs sounds at the correct moments in time to produce a melody.
 
-The sequencer similarly works on linear data and motion, and it outputs callback invocation at the correct moments in time. Crucially though, the sequencer is superior to the music box in two important aspects:
+The Sequencer similarly works on linear data and motion, and it outputs callback invocation at the correct moments in time. Crucially though, the Sequencer is superior to the music box in two important aspects:
 
-First, the sequencer is designed to support linear dynamic data. This implies that the raw material of the linear presentation may be modified at any time during playback, in terms of both media content and timing aspects. This may for instance be done directly by viewers interacting with the presentation, or by a production team. The sequencer ensures that this can occur safely, and it fully encapsulates the complexity that arise from this.
+First, the Sequencer is designed to support linear dynamic data. This implies that the raw material of the linear presentation may be modified at any time during playback, in terms of both media content and timing aspects. This may for instance be done directly by viewers interacting with the presentation, or by a production team. The Sequencer ensures that this can occur safely, and it fully encapsulates the complexity that arise from this.
 
-Second. the sequencer runs on shared motion. It maintains time-consistency for any kind of movement supported by the shared motion, be it double speed, backwards, jumping ahead or even acceleration. Furthermore, by virtue of being based on shared motion, the sequencer may be remote controlled across the Internet. The sequencer may also play part in synchronised multi-device presentations, presenting the same linear data at multiple screens, or different (related) data sets in a multi-screen production.
+Second. the Sequencer runs on the timing object/shared motion. It maintains time-consistency for any kind of movement supported by the shared motion, be it double speed, backwards, jumping ahead or even acceleration. Furthermore, by virtue of being based on shared motion, the Sequencer may be remote controlled across the Internet. The Sequencer may also play part in synchronised multi-device presentations, presenting the same linear data at multiple screens, or different (related) data sets in a multi-screen production.
 
 ![alt text](img/musicbox.png "Music box")
 
