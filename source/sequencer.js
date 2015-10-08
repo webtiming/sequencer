@@ -643,7 +643,7 @@ define(
 						closed = true;
 					}
 					// exiting or entering interval?
-					var direction = calculateDirection(initVector, now);
+					var direction = DirectionType.fromInteger(calculateDirection(initVector, now));
 					var entering = true;						
 					if (pointInfo.pointType === axis.PointType.LOW && direction === DirectionType.BACKWARDS)
 						entering = false;
@@ -655,6 +655,7 @@ define(
 					}
 					// entering open interval
 					if (entering && !closed) {
+						console.log("->", pointInfo.key);
 						enterKeys.push(pointInfo.key);
 					}
 				}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- requirejs config -->
+    <script>
+      var require = {
+        baseUrl : '../source', // module name <sequencer> points to sequencer.js inside source directory
+        paths: {
+          'mcorp': 'http://mcorp.no/lib/mcorp-2.0',
+          //'sequencer': '../lib/sequencer-require', // module name <sequencer> points to built js file - non-minified
+          //'sequencer': '../lib/sequencer-require-min', // module name <sequencer> points to built js file - minified 
+        },
+        shim: { 
+            'mcorp': { exports: 'MCorp'}
+        }
+      };
+    </script>
+    <!-- requirejs -->
+    <script src="../lib/require.js"></script>
+    <!--  main -->
+    <script text="javascript">
+      var m;
+      require(['mcorp', 'sequencer'], function (MCorp, seq) {
+        var app = MCorp.app("8456579076771837888", {anon:true});
+        app.run = function () {
+            m = app.motions.shared;
+            var s = new seq.Sequencer(app.motions.shared);
+            var Interval = seq.Interval;
+
+            s.request()
+              .addCue("zero", new Interval(0.0, 1.0))
+              .addCue("one", new Interval(1.0, 2.0))
+              .addCue("two", new Interval(2.0, 3.0))
+              .addCue("three", new Interval(3.0, 4.0))
+              .addCue("four", new Interval(4.0, 5.0))
+              .submit();
+
+            s.on("enter", function (e) {console.log(e.toString());});
+            s.on("exit", function (e) {console.log(e.toString());});
+
+            var jumpRunBtn = document.getElementById("jumprun");
+            jumpRunBtn.onclick = function () {m.update(3.0, 1.0);};
+            var pauseBtn = document.getElementById("pause");
+            pauseBtn.onclick = function () {m.update(null, 0.0);};
+            var resetBtn = document.getElementById("reset");
+            resetBtn.onclick = function () {m.update(0.0, 0.0);};
+        };
+        if (document.readyState === "complete") app.init();
+        else window.onload = app.init;
+      });
+    </script>    
+  </head>
+  <body>
+    <h1>Testing</h1>
+    <button id="jumprun">JumpRun</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+  </body>
+</html>
