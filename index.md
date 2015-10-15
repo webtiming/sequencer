@@ -39,12 +39,22 @@ The Sequencer implementation depends on [Shared Motion](http://motioncorporation
 For experimentation and development with the Sequencer, please contact the Motion Corporation for access to Shared Motion.
 
 ## Authors
-- Ingar Mæhlum Arntzen [ingar.arntzen@norut.no](mailto://ingar.arntzen@norut.no) - [github.com/ingararntzen](https://github.com/ingararntzen)
+
+Ingar M. Arntzen 
+
+- [ingar.arntzen@motioncorporation.com](mailto://ingar.arntzen@motioncorporation.com)
+- [github.com/ingararntzen](https://github.com/ingararntzen)
+- [twitter.com/ingararntzen](https://twitter.com/ingararntzen)
 
 ## Acknowledgements
 The development of the Sequencer is funded in part by the [EU FP7 MediaScape project](http://mediascapeproject.eu), and results are contributed as reference implementation to the W3C Multi-device Timing Community Group.
 
-- Njål Borch [njaal.borch@norut.no](mailto://njaal.borch@norut.no) - [github.com/snarkdoof](https://github.com/snarkdoof) has been much involved in testing, evaluation and API design.
+The Sequencer is joint work with Njål T. Borch
+
+- [njaal.borch@motioncorporation.com](mailto://njaal.borch@motioncorporation.com)
+- [github.com/snarkdoof](https://github.com/snarkdoof)
+- [twitter.com/njaalborch](https://twitter.com/njaalborch)
+
 
 ## License
 
