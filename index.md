@@ -12,6 +12,8 @@ demojs: index
 </style>
 <div id="demo" style="display:block;height:110px"></div>
 
+Also, check out more demos on YouTube - [Motion Corporation](https://www.youtube.com/channel/UCJ6nDda6IWhEAJ0TUTQ0P1w)
+
 ## Sequencer in a nutshell
 
 > The *Sequencer* is a simple and generic mechanism for *timed execution* of *timed data*.
